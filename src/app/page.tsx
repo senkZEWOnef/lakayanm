@@ -1,103 +1,222 @@
-import Image from "next/image";
+import Link from "next/link";
+import { prisma } from "@/lib/db";
 
-export default function Home() {
+export default async function HomePage() {
+  let departments = [];
+  let featuredPlaces = [];
+  let upcomingEvents = [];
+  
+  try {
+    // Get departments for overview
+    departments = await prisma.departments.findMany({
+      where: { is_published: true },
+      orderBy: { name: "asc" },
+    });
+
+    // Get featured places (random selection from different categories)
+    featuredPlaces = await prisma.places.findMany({
+      where: { 
+        is_published: true,
+        OR: [
+          { kind: 'restaurant' },
+          { kind: 'hotel' },
+          { kind: 'landmark' },
+          { kind: 'beach' }
+        ]
+      },
+      include: { 
+        city: { 
+          include: { department: true } 
+        } 
+      },
+      take: 6,
+      orderBy: { created_at: 'desc' }
+    });
+
+    // Get upcoming events
+    upcomingEvents = await prisma.places.findMany({
+      where: { 
+        kind: 'event',
+        is_published: true,
+        event_date: { gte: new Date() }
+      },
+      include: { 
+        city: { 
+          include: { department: true } 
+        } 
+      },
+      take: 4,
+      orderBy: { event_date: 'asc' }
+    });
+
+  } catch (error) {
+    console.error('Database connection error:', error);
+    // Return empty arrays to show page with error message
+  }
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+    <div className="space-y-16">
+      {/* Hero Section */}
+      <section className="text-center py-16 bg-gradient-to-br from-brand to-brand-dark text-white rounded-3xl">
+        <h1 className="hero-title text-white mb-4">Découvrez Haïti 🇭🇹</h1>
+        <p className="text-xl mb-8 text-white/90">Your local guide to culture, food, activities & history</p>
+        <div className="max-w-md mx-auto">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search places, food, activities..."
+              className="w-full px-4 py-3 rounded-xl text-gray-900 border-0"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <button className="absolute right-2 top-2 btn btn-primary">
+              🔍
+            </button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Departments Overview */}
+      <section>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Explore Haiti's 9 Departments</h2>
+          <p className="sub max-w-2xl mx-auto">
+            Discover unique experiences across all regions of Haiti. From northern fortresses to southern beaches,
+            each department offers its own cultural treasures and local flavors.
+          </p>
+        </div>
+
+        {departments.length === 0 ? (
+          <div className="card text-center">
+            <h3 className="font-semibold mb-2">🔌 Database Connection Issue</h3>
+            <p className="sub">
+              We're having trouble connecting to our database right now. Please try again in a moment.
+            </p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-3 gap-6">
+            {departments.map((dept) => (
+              <Link
+                key={dept.id}
+                href={`/dept/${dept.slug}`}
+                className="card hover:shadow-lg text-center group"
+              >
+                {dept.hero_url && (
+                  <img
+                    src={dept.hero_url}
+                    alt={dept.name}
+                    className="w-full h-32 object-cover rounded-xl mb-4 group-hover:scale-105 transition-transform"
+                  />
+                )}
+                <div className="text-4xl mb-3">
+                  {dept.slug === 'nord' && '🏰'}
+                  {dept.slug === 'ouest' && '🏛️'}
+                  {dept.slug === 'sud-est' && '🎨'}
+                  {dept.slug === 'artibonite' && '🌾'}
+                  {dept.slug === 'centre' && '⛪'}
+                  {dept.slug === 'sud' && '🏖️'}
+                  {dept.slug === 'grand-anse' && '🌿'}
+                  {dept.slug === 'nord-est' && '🏔️'}
+                  {dept.slug === 'nord-ouest' && '🗿'}
+                </div>
+                <h3 className="font-semibold text-lg mb-2">{dept.name}</h3>
+                {dept.intro && (
+                  <p className="sub text-sm line-clamp-2">{dept.intro}</p>
+                )}
+              </Link>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Featured Places */}
+      <section>
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-bold mb-4">✨ Featured Places</h2>
+          <p className="sub max-w-2xl mx-auto">
+            Discover some of Haiti's most remarkable destinations, from historic landmarks like the Citadelle 
+            to authentic local restaurants and beautiful accommodations.
+          </p>
+        </div>
+
+        {featuredPlaces.length === 0 ? (
+          <div className="text-center text-gray-500">
+            <p>Featured places will appear here once the database is connected.</p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredPlaces.map((place) => (
+              <Link
+                key={place.id}
+                href={`/dept/${place.city.department.slug}/city/${place.city.slug}#${place.slug}`}
+                className="card hover:shadow-lg group"
+              >
+                {place.cover_url && (
+                  <img
+                    src={place.cover_url}
+                    alt={place.name}
+                    className="w-full h-48 object-cover rounded-xl mb-4 group-hover:scale-105 transition-transform"
+                  />
+                )}
+                <div className="flex items-start justify-between mb-2">
+                  <h3 className="font-semibold text-lg">{place.name}</h3>
+                  <span className="text-xs px-2 py-1 rounded-full bg-brand/10 text-brand">
+                    {place.kind === 'restaurant' && '🍽️'}
+                    {place.kind === 'hotel' && '🏨'}
+                    {place.kind === 'landmark' && '🏛️'}
+                    {place.kind === 'beach' && '🏖️'}
+                    {place.kind}
+                  </span>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                  📍 {place.city.name}, {place.city.department.name}
+                </p>
+                {place.description && (
+                  <p className="sub text-sm line-clamp-2">{place.description}</p>
+                )}
+              </Link>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Upcoming Events */}
+      {upcomingEvents.length > 0 && (
+        <section>
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold mb-4">📅 Upcoming Events</h2>
+            <p className="sub max-w-2xl mx-auto">
+              Don't miss these exciting events happening across Haiti. From cultural festivals to local celebrations.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {upcomingEvents.map((event) => (
+              <Link
+                key={event.id}
+                href={`/dept/${event.city.department.slug}/city/${event.city.slug}#${event.slug}`}
+                className="card hover:shadow-lg border-l-4 border-orange-500"
+              >
+                <div className="flex items-start justify-between mb-2">
+                  <h3 className="font-semibold">{event.name}</h3>
+                  <span className="text-xs px-2 py-1 rounded bg-orange-100 text-orange-700">
+                    📅 Event
+                  </span>
+                </div>
+                <p className="text-sm text-gray-600 mb-2">
+                  📍 {event.city.name}, {event.city.department.name}
+                </p>
+                {event.event_date && (
+                  <p className="text-sm text-orange-600 mb-2">
+                    🗓️ {new Date(event.event_date).toLocaleDateString()}
+                  </p>
+                )}
+                {event.description && (
+                  <p className="sub text-sm line-clamp-3">{event.description}</p>
+                )}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

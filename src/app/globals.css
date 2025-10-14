@@ -1,26 +1,31 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light dark;
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50;
+}
+.container-lg {
+  @apply max-w-6xl mx-auto px-4;
+}
+.card {
+  @apply rounded-2xl shadow-md border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/70 backdrop-blur p-5;
+}
+.hero-title {
+  @apply text-3xl md:text-5xl font-extrabold tracking-tight;
+}
+.sub {
+  @apply text-zinc-600 dark:text-zinc-400;
+}
+.btn {
+  @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 font-medium border border-zinc-300 dark:border-zinc-700 hover:shadow;
+}
+.btn-primary {
+  @apply bg-brand text-white border-0 hover:bg-brand-dark;
+}
+.grid-auto {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5;
 }
