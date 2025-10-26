@@ -293,21 +293,95 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         {figures.length > 0 && (
           <div className="mb-6">
             <h3 className="font-semibold mb-3">👑 Notable Figures Born or Lived Here</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="space-y-6">
               {figures.map((figure) => (
-                <div key={figure.id} className="bg-white dark:bg-gray-800 p-4 rounded-xl">
-                  {figure.portrait_url && (
-                    <img src={figure.portrait_url} alt={figure.name} className="w-16 h-16 object-cover rounded-full mb-3 mx-auto" />
-                  )}
-                  <h4 className="font-semibold text-center">{figure.name}</h4>
-                  {(figure.birth_year || figure.death_year) && (
-                    <p className="text-xs text-center text-gray-500 mb-2">
-                      {figure.birth_year && figure.birth_year} - {figure.death_year && figure.death_year}
-                    </p>
-                  )}
-                  {figure.bio && (
-                    <p className="text-sm sub line-clamp-3">{figure.bio}</p>
-                  )}
+                <div key={figure.id} className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-amber-200">
+                  <div className="flex items-start gap-4">
+                    {figure.portrait_url && (
+                      <img src={figure.portrait_url} alt={figure.name} className="w-20 h-20 object-cover rounded-full flex-shrink-0" />
+                    )}
+                    <div className="flex-1">
+                      <div className="flex items-start justify-between mb-2">
+                        <div>
+                          <h4 className="font-bold text-lg">{figure.name}</h4>
+                          {figure.full_name && figure.full_name !== figure.name && (
+                            <p className="text-sm text-gray-600 dark:text-gray-400">{figure.full_name}</p>
+                          )}
+                          {figure.category && (
+                            <span className="inline-block text-xs px-2 py-1 bg-amber-100 text-amber-700 rounded-full mt-1">
+                              {figure.category}
+                            </span>
+                          )}
+                        </div>
+                        {(figure.birth_year || figure.death_year) && (
+                          <div className="text-right text-sm text-gray-500">
+                            <div>{figure.birth_year} - {figure.death_year}</div>
+                            {figure.birth_place && (
+                              <div className="text-xs">📍 {figure.birth_place}</div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                      
+                      {figure.bio && (
+                        <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">{figure.bio}</p>
+                      )}
+
+                      {/* Legacy & Famous Works */}
+                      <div className="grid md:grid-cols-2 gap-4 mb-3">
+                        {figure.legacy && (
+                          <div>
+                            <h5 className="font-semibold text-xs text-gray-600 uppercase tracking-wide mb-1">Legacy</h5>
+                            <p className="text-sm">{figure.legacy}</p>
+                          </div>
+                        )}
+                        {figure.famous_works && (
+                          <div>
+                            <h5 className="font-semibold text-xs text-gray-600 uppercase tracking-wide mb-1">Famous Works</h5>
+                            <p className="text-sm">{figure.famous_works}</p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Addresses & Monuments */}
+                      {(figure.lived_addresses || figure.monuments) && (
+                        <div className="grid md:grid-cols-2 gap-4 mb-3">
+                          {figure.lived_addresses && (
+                            <div>
+                              <h5 className="font-semibold text-xs text-gray-600 uppercase tracking-wide mb-1">🏠 Lived Here</h5>
+                              <div className="text-sm space-y-1">
+                                {JSON.parse(figure.lived_addresses).map((address: string, idx: number) => (
+                                  <div key={idx} className="text-gray-700 dark:text-gray-300">{address}</div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          {figure.monuments && (
+                            <div>
+                              <h5 className="font-semibold text-xs text-gray-600 uppercase tracking-wide mb-1">🏛️ Monuments</h5>
+                              <div className="text-sm space-y-1">
+                                {JSON.parse(figure.monuments).map((monument: string, idx: number) => (
+                                  <div key={idx} className="text-gray-700 dark:text-gray-300">{monument}</div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Quotes */}
+                      {figure.quotes && (
+                        <div className="border-l-4 border-amber-300 pl-4 bg-amber-50 dark:bg-amber-900/20 p-3 rounded">
+                          <h5 className="font-semibold text-xs text-gray-600 uppercase tracking-wide mb-2">💬 Famous Quote</h5>
+                          {JSON.parse(figure.quotes).map((quote: string, idx: number) => (
+                            <blockquote key={idx} className="text-sm italic text-gray-700 dark:text-gray-300">
+                              "{quote}"
+                            </blockquote>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>

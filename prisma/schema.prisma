@@ -178,6 +178,24 @@ model figures {
   is_published Boolean   @default(true)
   created_at   DateTime  @default(now())
 
+  // Enhanced biographical details
+  full_name    String?  // Full name including titles
+  category     String?  // Revolutionary, Writer, Musician, Politician, etc.
+  birth_place  String?  // Specific birthplace
+  death_place  String?  // Where they died
+  legacy       String?  // Their lasting impact/legacy
+  famous_works String?  // Books, songs, achievements
+  
+  // Address & location details
+  lived_addresses Json?  // Array of addresses where they lived
+  worked_addresses Json? // Places where they worked/created
+  monuments    Json?     // Monuments/memorials dedicated to them
+  
+  // Cultural connections
+  contemporaries String? // Other figures they knew/worked with
+  movements     String?  // Political/cultural movements they were part of
+  quotes        Json?    // Famous quotes attributed to them
+
   city cities @relation(fields: [city_id], references: [id])
 
   @@unique([city_id, slug])
