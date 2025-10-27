@@ -2,9 +2,9 @@ import Link from "next/link";
 import { prisma } from "@/lib/db";
 
 export default async function HomePage() {
-  let departments = [];
-  let featuredPlaces = [];
-  let upcomingEvents = [];
+  let departments: any[] = [];
+  let featuredPlaces: any[] = [];
+  let upcomingEvents: any[] = [];
   
   try {
     // Get departments for overview
@@ -77,7 +77,7 @@ export default async function HomePage() {
       {/* Departments Overview */}
       <section>
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Explore Haiti's 9 Departments</h2>
+          <h2 className="text-3xl font-bold mb-4">Explore Haiti&apos;s 9 Departments</h2>
           <p className="sub max-w-2xl mx-auto">
             Discover unique experiences across all regions of Haiti. From northern fortresses to southern beaches,
             each department offers its own cultural treasures and local flavors.
@@ -88,7 +88,7 @@ export default async function HomePage() {
           <div className="card text-center">
             <h3 className="font-semibold mb-2">🔌 Database Connection Issue</h3>
             <p className="sub">
-              We're having trouble connecting to our database right now. Please try again in a moment.
+              We&apos;re having trouble connecting to our database right now. Please try again in a moment.
             </p>
           </div>
         ) : (
@@ -132,7 +132,7 @@ export default async function HomePage() {
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold mb-4">✨ Featured Places</h2>
           <p className="sub max-w-2xl mx-auto">
-            Discover some of Haiti's most remarkable destinations, from historic landmarks like the Citadelle 
+            Discover some of Haiti&apos;s most remarkable destinations, from historic landmarks like the Citadelle 
             to authentic local restaurants and beautiful accommodations.
           </p>
         </div>
@@ -184,7 +184,7 @@ export default async function HomePage() {
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold mb-4">📅 Upcoming Events</h2>
             <p className="sub max-w-2xl mx-auto">
-              Don't miss these exciting events happening across Haiti. From cultural festivals to local celebrations.
+              Don&apos;t miss these exciting events happening across Haiti. From cultural festivals to local celebrations.
             </p>
           </div>
 

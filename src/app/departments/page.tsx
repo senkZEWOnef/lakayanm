@@ -4,7 +4,15 @@ import { prisma } from "@/lib/db";
 export const dynamic = "force-dynamic";
 
 export default async function DepartmentsPage() {
-  let data = [];
+  let data: Array<{
+    id: string;
+    slug: string;
+    name: string;
+    intro: string | null;
+    hero_url: string | null;
+    is_published: boolean;
+    created_at: Date;
+  }> = [];
   try {
     data = await prisma.departments.findMany({
       where: { is_published: true },
@@ -22,7 +30,7 @@ export default async function DepartmentsPage() {
         <div className="card text-center">
           <h3 className="font-semibold mb-2">🔌 Database Connection Issue</h3>
           <p className="sub">
-            We're having trouble connecting to our database right now. Please try again in a moment.
+            We&apos;re having trouble connecting to our database right now. Please try again in a moment.
           </p>
         </div>
       ) : (

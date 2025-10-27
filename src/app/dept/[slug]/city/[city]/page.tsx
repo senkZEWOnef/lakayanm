@@ -284,7 +284,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         <div className="mb-6">
           <h3 className="font-semibold mb-2">🏛️ Historical Importance</h3>
           <p className="sub">
-            {city.name} has played a significant role in Haiti's rich history. From colonial times through independence 
+            {city.name} has played a significant role in Haiti&apos;s rich history. From colonial times through independence 
             and into the modern era, this city has been home to important events and influential figures.
           </p>
         </div>
@@ -346,21 +346,21 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                       {/* Addresses & Monuments */}
                       {(figure.lived_addresses || figure.monuments) && (
                         <div className="grid md:grid-cols-2 gap-4 mb-3">
-                          {figure.lived_addresses && (
+                          {figure.lived_addresses && typeof figure.lived_addresses === 'string' && (
                             <div>
                               <h5 className="font-semibold text-xs text-gray-600 uppercase tracking-wide mb-1">🏠 Lived Here</h5>
                               <div className="text-sm space-y-1">
-                                {JSON.parse(figure.lived_addresses).map((address: string, idx: number) => (
+                                {(JSON.parse(figure.lived_addresses) as string[]).map((address: string, idx: number) => (
                                   <div key={idx} className="text-gray-700 dark:text-gray-300">{address}</div>
                                 ))}
                               </div>
                             </div>
                           )}
-                          {figure.monuments && (
+                          {figure.monuments && typeof figure.monuments === 'string' && (
                             <div>
                               <h5 className="font-semibold text-xs text-gray-600 uppercase tracking-wide mb-1">🏛️ Monuments</h5>
                               <div className="text-sm space-y-1">
-                                {JSON.parse(figure.monuments).map((monument: string, idx: number) => (
+                                {(JSON.parse(figure.monuments) as string[]).map((monument: string, idx: number) => (
                                   <div key={idx} className="text-gray-700 dark:text-gray-300">{monument}</div>
                                 ))}
                               </div>
@@ -370,12 +370,12 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                       )}
 
                       {/* Quotes */}
-                      {figure.quotes && (
+                      {figure.quotes && typeof figure.quotes === 'string' && (
                         <div className="border-l-4 border-amber-300 pl-4 bg-amber-50 dark:bg-amber-900/20 p-3 rounded">
                           <h5 className="font-semibold text-xs text-gray-600 uppercase tracking-wide mb-2">💬 Famous Quote</h5>
-                          {JSON.parse(figure.quotes).map((quote: string, idx: number) => (
+                          {(JSON.parse(figure.quotes) as string[]).map((quote: string, idx: number) => (
                             <blockquote key={idx} className="text-sm italic text-gray-700 dark:text-gray-300">
-                              "{quote}"
+                              &ldquo;{quote}&rdquo;
                             </blockquote>
                           ))}
                         </div>
@@ -393,7 +393,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           <h3 className="font-semibold mb-2">🛣️ Historic Streets & Monuments</h3>
           <p className="text-sm sub">
             Many streets and landmarks in {city.name} are named after important historical figures and commemorate 
-            significant events in Haitian history. Each tells a story of the city's past and its contribution to the nation.
+            significant events in Haitian history. Each tells a story of the city&apos;s past and its contribution to the nation.
           </p>
         </div>
       </section>

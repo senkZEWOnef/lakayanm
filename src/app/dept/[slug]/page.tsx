@@ -21,7 +21,7 @@ export default async function DepartmentPage({ params }: { params: Promise<{ slu
       <div className="card text-center">
         <h3 className="font-semibold mb-2">🔌 Database Connection Issue</h3>
         <p className="sub">
-          We're having trouble connecting to our database right now. Please try again in a moment.
+          We&apos;re having trouble connecting to our database right now. Please try again in a moment.
         </p>
       </div>
     );
