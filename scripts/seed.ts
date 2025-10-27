@@ -525,7 +525,7 @@ async function main() {
         quotes: JSON.stringify([
           "En me renversant, on n'a abattu à Saint-Domingue que le tronc de l'arbre de la liberté, mais il repoussera car ses racines sont profondes et nombreuses"
         ]),
-        portrait_url: "https://upload.wikimedia.org/wikipedia/commons/5/51/Toussaint_L%27Ouverture.jpg",
+        portrait_url: "https://upload.wikimedia.org/wikipedia/commons/3/32/G%C3%A9n%C3%A9ral_Toussaint_Louverture.jpg",
         is_published: true,
       },
     });
@@ -572,7 +572,7 @@ async function main() {
             "Je renais de mes cendres (I rise from my ashes)",
             "Henry, by the grace of God and constitutional law of the state, King of Haiti, Destroyer of tyranny, Regenerator and Benefactor of the Haitian nation"
           ]),
-          portrait_url: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Henri_Christophe.jpg",
+          portrait_url: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Henri_Christophe.jpg",
           is_published: true,
         },
       });
