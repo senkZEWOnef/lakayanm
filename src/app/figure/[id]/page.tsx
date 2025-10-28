@@ -32,13 +32,17 @@ export default async function FigurePage({ params }: { params: Promise<{ id: str
   let livedAddresses: string[] = [];
   let quotes: string[] = [];
   let monuments: string[] = [];
-  let achievements: string[] = [];
 
   try {
-    if (figure.lived_addresses) livedAddresses = JSON.parse(figure.lived_addresses);
-    if (figure.quotes) quotes = JSON.parse(figure.quotes);
-    if (figure.monuments) monuments = JSON.parse(figure.monuments);
-    if (figure.achievements) achievements = JSON.parse(figure.achievements);
+    if (figure.lived_addresses) {
+      livedAddresses = Array.isArray(figure.lived_addresses) ? figure.lived_addresses as string[] : [];
+    }
+    if (figure.quotes) {
+      quotes = Array.isArray(figure.quotes) ? figure.quotes as string[] : [];
+    }
+    if (figure.monuments) {
+      monuments = Array.isArray(figure.monuments) ? figure.monuments as string[] : [];
+    }
   } catch (error) {
     console.error('Error parsing JSON fields:', error);
   }
@@ -130,19 +134,14 @@ export default async function FigurePage({ params }: { params: Promise<{ id: str
         </section>
       )}
 
-      {/* Achievements */}
-      {achievements.length > 0 && (
+      {/* Famous Works */}
+      {figure.famous_works && (
         <section className="card border-l-4 border-brand">
           <h2 className="text-2xl font-bold text-haiti-navy dark:text-haiti-turquoise mb-6 flex items-center gap-2">
-            🏆 Major Achievements
+            🏆 Famous Works & Achievements
           </h2>
-          <div className="grid gap-4">
-            {achievements.map((achievement, index) => (
-              <div key={index} className="flex items-start gap-3 p-4 bg-brand/5 rounded-xl">
-                <div className="text-brand text-xl">✓</div>
-                <p className="sub">{achievement}</p>
-              </div>
-            ))}
+          <div className="p-4 bg-brand/5 rounded-xl">
+            <p className="sub">{figure.famous_works}</p>
           </div>
         </section>
       )}
@@ -197,12 +196,12 @@ export default async function FigurePage({ params }: { params: Promise<{ id: str
           </div>
         )}
 
-        {figure.occupation && (
+        {figure.legacy && (
           <div className="card border-l-4 border-haiti-emerald">
             <h3 className="text-xl font-bold text-haiti-navy dark:text-haiti-turquoise mb-3 flex items-center gap-2">
-              💼 Occupation
+              🌟 Legacy
             </h3>
-            <p className="sub">{figure.occupation}</p>
+            <p className="sub">{figure.legacy}</p>
           </div>
         )}
       </div>

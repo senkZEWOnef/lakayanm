@@ -2,36 +2,39 @@ import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/db";
 
+interface Department {
+  id: string;
+  slug: string;
+  name: string;
+  intro: string | null;
+  hero_url: string | null;
+}
+
+interface UpcomingEvent {
+  id: string;
+  name: string;
+  slug: string;
+  description: string | null;
+  event_date: Date | null;
+  city: {
+    name: string;
+    slug: string;
+    department: {
+      name: string;
+      slug: string;
+    };
+  };
+}
+
 export default async function HomePage() {
-  let departments: any[] = [];
-  let featuredPlaces: any[] = [];
-  let upcomingEvents: any[] = [];
+  let departments: Department[] = [];
+  let upcomingEvents: UpcomingEvent[] = [];
   
   try {
     // Get departments for overview
     departments = await prisma.departments.findMany({
       where: { is_published: true },
       orderBy: { name: "asc" },
-    });
-
-    // Get featured places (random selection from different categories)
-    featuredPlaces = await prisma.places.findMany({
-      where: { 
-        is_published: true,
-        OR: [
-          { kind: 'restaurant' },
-          { kind: 'hotel' },
-          { kind: 'landmark' },
-          { kind: 'beach' }
-        ]
-      },
-      include: { 
-        city: { 
-          include: { department: true } 
-        } 
-      },
-      take: 6,
-      orderBy: { created_at: 'desc' }
     });
 
     // Get upcoming events
@@ -124,9 +127,11 @@ export default async function HomePage() {
                 className="card hover:shadow-lg text-center group hover:border-brand/50 transition-all duration-300"
               >
                 {dept.hero_url && (
-                  <img
+                  <Image
                     src={dept.hero_url}
                     alt={dept.name}
+                    width={400}
+                    height={128}
                     className="w-full h-32 object-cover rounded-xl mb-4 group-hover:scale-105 transition-transform"
                   />
                 )}
