@@ -20,16 +20,17 @@ export async function retryPrismaOperation<T>(
   for (let i = 0; i < maxRetries; i++) {
     try {
       return await operation();
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (i === maxRetries - 1) throw error;
       
       // Check if it's a connection/timeout error
+      const err = error as { code?: string | number; message?: string };
       if (
-        error.code === 'P1001' || // Can't reach database server
-        error.code === 'P1008' || // Operations timed out
-        error.code === 23 ||       // Timeout error
-        error.message?.includes('timeout') ||
-        error.message?.includes('connection')
+        err.code === 'P1001' || // Can't reach database server
+        err.code === 'P1008' || // Operations timed out
+        err.code === 23 ||       // Timeout error
+        err.message?.includes('timeout') ||
+        err.message?.includes('connection')
       ) {
         console.log(`Database operation failed (attempt ${i + 1}/${maxRetries}), retrying in ${delay}ms...`);
         await new Promise(resolve => setTimeout(resolve, delay));
