@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { prisma } from "@/lib/db";
+import { prisma, retryPrismaOperation } from "@/lib/db";
 
 interface Department {
   id: string;
@@ -32,26 +32,30 @@ export default async function HomePage() {
   
   try {
     // Get departments for overview
-    departments = await prisma.departments.findMany({
-      where: { is_published: true },
-      orderBy: { name: "asc" },
-    });
+    departments = await retryPrismaOperation(() =>
+      prisma.departments.findMany({
+        where: { is_published: true },
+        orderBy: { name: "asc" },
+      })
+    );
 
     // Get upcoming events
-    upcomingEvents = await prisma.places.findMany({
-      where: { 
-        kind: 'event',
-        is_published: true,
-        event_date: { gte: new Date() }
-      },
-      include: { 
-        city: { 
-          include: { department: true } 
-        } 
-      },
-      take: 4,
-      orderBy: { event_date: 'asc' }
-    });
+    upcomingEvents = await retryPrismaOperation(() =>
+      prisma.places.findMany({
+        where: { 
+          kind: 'event',
+          is_published: true,
+          event_date: { gte: new Date() }
+        },
+        include: { 
+          city: { 
+            include: { department: true } 
+          } 
+        },
+        take: 4,
+        orderBy: { event_date: 'asc' }
+      })
+    );
 
   } catch (error) {
     console.error('Database connection error:', error);
