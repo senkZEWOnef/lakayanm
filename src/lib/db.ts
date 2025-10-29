@@ -1,7 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import { neonConfig } from "@neondatabase/serverless";
-
-neonConfig.fetchConnectionCache = true;
 
 const globalForPrisma = global as unknown as { prisma: PrismaClient | undefined };
 
