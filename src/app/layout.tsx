@@ -31,7 +31,7 @@ export default function RootLayout({
             </div>
           </nav>
         </header>
-        <main className="min-h-screen bg-slate-50 dark:bg-slate-900">{children}</main>
+        <main className="min-h-screen" style={{backgroundColor: '#1e293b'}}>{children}</main>
         <footer className="bg-slate-800 dark:bg-slate-900 border-t-2 border-amber-400/30 relative">
           {/* Golden top accent line */}
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
