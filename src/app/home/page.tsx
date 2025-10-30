@@ -167,7 +167,19 @@ export default async function HomePage() {
         <div className="grid md:grid-cols-3 gap-6">
           <Link href="/food/restaurants" className="relative group bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-white/90 dark:hover:bg-slate-800/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
             <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
-            <div className="text-4xl mb-4">🍴</div>
+            
+            <div className="relative mb-6 overflow-hidden rounded-xl">
+              <Image
+                src="/restaurant.jpg"
+                alt="Restaurant"
+                width={300}
+                height={160}
+                className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-amber-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            
+            <div className="text-2xl mb-4">🍴</div>
             <h3 className="font-semibold text-xl mb-3 text-slate-900 dark:text-slate-100 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors duration-300">Restaurants</h3>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Find authentic Haitian cuisine and international dining options</p>
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
@@ -175,7 +187,19 @@ export default async function HomePage() {
 
           <Link href="/food/supermarkets" className="relative group bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-white/90 dark:hover:bg-slate-800/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
             <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
-            <div className="text-4xl mb-4">🛒</div>
+            
+            <div className="relative mb-6 overflow-hidden rounded-xl">
+              <Image
+                src="/market.jpg"
+                alt="Supermarket"
+                width={300}
+                height={160}
+                className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-amber-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            
+            <div className="text-2xl mb-4">🛒</div>
             <h3 className="font-semibold text-xl mb-3 text-slate-900 dark:text-slate-100 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors duration-300">Supermarkets</h3>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Grocery stores and markets for daily essentials and local products</p>
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
@@ -183,7 +207,19 @@ export default async function HomePage() {
 
           <Link href="/food/local-business" className="relative group bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-white/90 dark:hover:bg-slate-800/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
             <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
-            <div className="text-4xl mb-4">🏪</div>
+            
+            <div className="relative mb-6 overflow-hidden rounded-xl">
+              <Image
+                src="/local.jpg"
+                alt="Local Business"
+                width={300}
+                height={160}
+                className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-amber-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            
+            <div className="text-2xl mb-4">🏪</div>
             <h3 className="font-semibold text-xl mb-3 text-slate-900 dark:text-slate-100 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors duration-300">Local Business</h3>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Specialty food stores, bakeries, and local food vendors</p>
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
