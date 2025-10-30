@@ -1,6 +1,7 @@
 import "./globals.css";
 import Link from "next/link";
 import { DatabaseStatus } from "@/components/dev/DatabaseStatus";
+import { MobileDebug } from "@/components/MobileDebug";
 
 export const metadata = {
   title: "Lakaya'm",
@@ -132,6 +133,7 @@ export default function RootLayout({
           </div>
         </footer>
         <DatabaseStatus />
+        <MobileDebug />
       </body>
     </html>
   );
