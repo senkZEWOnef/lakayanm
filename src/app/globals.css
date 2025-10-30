@@ -36,14 +36,23 @@ body {
   @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5;
 }
 
-/* Mobile-specific fixes */
+/* Mobile Safari and iPhone specific fixes */
 @media (max-width: 768px) {
   html {
-    @apply bg-slate-50 dark:bg-slate-900;
+    background-color: #f8fafc;
+    color: #0f172a;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    html {
+      background-color: #0f172a;
+      color: #f8fafc;
+    }
   }
   
   body {
-    @apply bg-slate-50 dark:bg-slate-900;
+    background-color: #f8fafc;
+    color: #0f172a;
     -webkit-appearance: none;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
@@ -51,26 +60,49 @@ body {
     min-height: 100dvh;
   }
   
-  .card {
-    @apply border border-amber-200/60 dark:border-amber-400/25 bg-white/90 dark:bg-slate-800/90;
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+    }
   }
   
-  /* Ensure proper mobile backgrounds without forcing light mode */
-  .min-h-screen {
-    @apply bg-slate-50 dark:bg-slate-900;
+  /* Fix main container on mobile */
+  main {
+    background-color: #f8fafc;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    main {
+      background-color: #0f172a;
+    }
+  }
+  
+  .card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(251, 191, 36, 0.6);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .card {
+      background-color: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+    }
   }
 }
 
-/* Mobile Safari specific fixes that respect dark mode */
+/* iOS Safari specific */
 @supports (-webkit-touch-callout: none) {
-  html {
-    @apply bg-slate-50 dark:bg-slate-900;
-  }
-  
-  body {
-    @apply bg-slate-50 dark:bg-slate-900;
+  html, body {
+    background-color: #f8fafc;
     -webkit-appearance: none;
     -webkit-background-clip: padding-box;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    html, body {
+      background-color: #0f172a;
+    }
   }
 }
 
