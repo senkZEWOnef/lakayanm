@@ -60,3 +60,38 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+/* Mobile-first responsive utilities */
+@layer utilities {
+  .mobile-responsive-section {
+    @apply py-8 md:py-16 px-4 md:px-6;
+  }
+  
+  .mobile-responsive-title {
+    @apply text-2xl sm:text-3xl md:text-5xl lg:text-6xl;
+  }
+  
+  .mobile-responsive-subtitle {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+  
+  .mobile-responsive-text {
+    @apply text-base md:text-lg px-2 md:px-0;
+  }
+  
+  .mobile-responsive-card {
+    @apply p-4 md:p-6 rounded-xl md:rounded-2xl;
+  }
+  
+  .mobile-responsive-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6;
+  }
+  
+  .mobile-responsive-decorative-frame {
+    @apply w-6 h-6 md:w-12 md:h-12 lg:w-16 lg:h-16;
+  }
+  
+  .mobile-hidden-decorative {
+    @apply hidden sm:block;
+  }
+}

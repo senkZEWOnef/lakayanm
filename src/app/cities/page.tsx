@@ -132,33 +132,33 @@ export default function CitiesPage() {
         <div className="absolute inset-0 bg-white/70 dark:bg-slate-900/80"></div>
       </div>
 
-      <div className="relative z-10 space-y-20">
+      <div className="relative z-10 space-y-8 md:space-y-20">
         {/* Header Section */}
-        <section className="text-center py-24 relative">
-          {/* Golden decorative frame */}
-          <div className="absolute top-8 left-8 w-20 h-20 border-l-2 border-t-2 border-amber-400/40"></div>
-          <div className="absolute top-8 right-8 w-20 h-20 border-r-2 border-t-2 border-amber-400/40"></div>
-          <div className="absolute bottom-8 left-8 w-20 h-20 border-l-2 border-b-2 border-amber-400/40"></div>
-          <div className="absolute bottom-8 right-8 w-20 h-20 border-r-2 border-b-2 border-amber-400/40"></div>
+        <section className="text-center py-12 md:py-24 relative">
+          {/* Golden decorative frame - responsive */}
+          <div className="absolute top-4 left-4 md:top-8 md:left-8 w-8 h-8 md:w-20 md:h-20 border-l-2 border-t-2 border-amber-400/40"></div>
+          <div className="absolute top-4 right-4 md:top-8 md:right-8 w-8 h-8 md:w-20 md:h-20 border-r-2 border-t-2 border-amber-400/40"></div>
+          <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 w-8 h-8 md:w-20 md:h-20 border-l-2 border-b-2 border-amber-400/40"></div>
+          <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 w-8 h-8 md:w-20 md:h-20 border-r-2 border-b-2 border-amber-400/40"></div>
           
-          {/* Inner golden accent lines */}
-          <div className="absolute top-16 left-16 w-12 h-12 border-l border-t border-amber-400/20"></div>
-          <div className="absolute top-16 right-16 w-12 h-12 border-r border-t border-amber-400/20"></div>
-          <div className="absolute bottom-16 left-16 w-12 h-12 border-l border-b border-amber-400/20"></div>
-          <div className="absolute bottom-16 right-16 w-12 h-12 border-r border-b border-amber-400/20"></div>
+          {/* Inner golden accent lines - hidden on mobile */}
+          <div className="absolute top-8 left-8 md:top-16 md:left-16 w-6 h-6 md:w-12 md:h-12 border-l border-t border-amber-400/20 hidden sm:block"></div>
+          <div className="absolute top-8 right-8 md:top-16 md:right-16 w-6 h-6 md:w-12 md:h-12 border-r border-t border-amber-400/20 hidden sm:block"></div>
+          <div className="absolute bottom-8 left-8 md:bottom-16 md:left-16 w-6 h-6 md:w-12 md:h-12 border-l border-b border-amber-400/20 hidden sm:block"></div>
+          <div className="absolute bottom-8 right-8 md:bottom-16 md:right-16 w-6 h-6 md:w-12 md:h-12 border-r border-b border-amber-400/20 hidden sm:block"></div>
           
-          <div className="max-w-5xl mx-auto px-6">
-            <h1 className="text-6xl md:text-7xl font-light tracking-tight text-slate-900 dark:text-slate-100 mb-6">
+          <div className="max-w-5xl mx-auto px-4 md:px-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-slate-900 dark:text-slate-100 mb-4 md:mb-6">
               Cities of Haiti
             </h1>
             
             {/* Golden accent line */}
-            <div className="w-40 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-10"></div>
+            <div className="w-24 md:w-40 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-6 md:mb-10"></div>
             
-            <p className="text-2xl font-light text-amber-700 dark:text-amber-300 mb-6 tracking-wide">
+            <p className="text-lg sm:text-xl md:text-2xl font-light text-amber-700 dark:text-amber-300 mb-4 md:mb-6 tracking-wide">
               DISCOVER 30 MAJOR CITIES
             </p>
-            <p className="text-xl text-slate-700 dark:text-slate-300 mb-16 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base md:text-xl text-slate-700 dark:text-slate-300 mb-8 md:mb-16 max-w-3xl mx-auto leading-relaxed px-4">
               Explore Haiti&apos;s vibrant urban centers across all 10 departments, each with its unique character and cultural treasures.
             </p>
           </div>
@@ -167,14 +167,14 @@ export default function CitiesPage() {
         {/* Filters Section */}
         <section className="relative">
           {/* Golden decorative corners for section */}
-          <div className="absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 border-amber-400/30"></div>
-          <div className="absolute top-0 right-0 w-16 h-16 border-r-2 border-t-2 border-amber-400/30"></div>
+          <div className="absolute top-0 left-0 w-8 h-8 md:w-16 md:h-16 border-l-2 border-t-2 border-amber-400/30"></div>
+          <div className="absolute top-0 right-0 w-8 h-8 md:w-16 md:h-16 border-r-2 border-t-2 border-amber-400/30"></div>
           
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="relative bg-white/85 dark:bg-slate-800/85 backdrop-blur-lg border-2 border-amber-200/40 dark:border-amber-400/25 rounded-3xl p-10 shadow-2xl shadow-amber-400/5">
+          <div className="max-w-6xl mx-auto px-4 md:px-6">
+            <div className="relative bg-white/85 dark:bg-slate-800/85 backdrop-blur-lg border-2 border-amber-200/40 dark:border-amber-400/25 rounded-2xl md:rounded-3xl p-6 md:p-10 shadow-2xl shadow-amber-400/5">
               {/* Golden corner accents */}
-              <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-amber-400/50"></div>
-              <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-amber-400/50"></div>
+              <div className="absolute top-3 right-3 md:top-4 md:right-4 w-6 h-6 md:w-8 md:h-8 border-r-2 border-t-2 border-amber-400/50"></div>
+              <div className="absolute bottom-3 left-3 md:bottom-4 md:left-4 w-6 h-6 md:w-8 md:h-8 border-l-2 border-b-2 border-amber-400/50"></div>
               
               {/* Central golden line decoration */}
               <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-px h-full bg-gradient-to-b from-transparent via-amber-400/20 to-transparent"></div>

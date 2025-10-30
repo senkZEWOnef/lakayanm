@@ -74,27 +74,27 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-white/70 dark:bg-slate-900/80"></div>
       </div>
 
-      <div className="relative z-10 space-y-16">
+      <div className="relative z-10 space-y-8 md:space-y-16">
         {/* Hero Section */}
-        <section className="text-center py-20 relative">
-          {/* Golden decorative frame */}
-          <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 border-amber-400/40"></div>
-          <div className="absolute top-8 right-8 w-16 h-16 border-r-2 border-t-2 border-amber-400/40"></div>
-          <div className="absolute bottom-8 left-8 w-16 h-16 border-l-2 border-b-2 border-amber-400/40"></div>
-          <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-amber-400/40"></div>
+        <section className="text-center py-12 md:py-20 relative">
+          {/* Golden decorative frame - responsive */}
+          <div className="absolute top-4 left-4 md:top-8 md:left-8 w-8 h-8 md:w-16 md:h-16 border-l-2 border-t-2 border-amber-400/40"></div>
+          <div className="absolute top-4 right-4 md:top-8 md:right-8 w-8 h-8 md:w-16 md:h-16 border-r-2 border-t-2 border-amber-400/40"></div>
+          <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 w-8 h-8 md:w-16 md:h-16 border-l-2 border-b-2 border-amber-400/40"></div>
+          <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 w-8 h-8 md:w-16 md:h-16 border-r-2 border-b-2 border-amber-400/40"></div>
           
-          <div className="max-w-4xl mx-auto px-6">
-            <h1 className="text-5xl md:text-6xl font-light tracking-tight text-slate-900 dark:text-slate-100 mb-4">
+          <div className="max-w-4xl mx-auto px-4 md:px-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-slate-900 dark:text-slate-100 mb-3 md:mb-4">
               Lakaya&apos;m
             </h1>
             
             {/* Golden accent line */}
-            <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-8"></div>
+            <div className="w-20 md:w-32 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-4 md:mb-8"></div>
             
-            <p className="text-2xl font-light text-amber-700 dark:text-amber-300 mb-4 tracking-wide">
+            <p className="text-lg sm:text-xl md:text-2xl font-light text-amber-700 dark:text-amber-300 mb-3 md:mb-4 tracking-wide">
               DISCOVER HAITI
             </p>
-            <p className="text-lg text-slate-700 dark:text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base md:text-lg text-slate-700 dark:text-slate-300 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed px-4">
               Your guide to Haiti&apos;s vibrant culture, rich history, and hidden treasures
             </p>
             
@@ -135,76 +135,76 @@ export default async function HomePage() {
         <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-amber-400/30"></div>
         <div className="absolute top-0 right-0 w-12 h-12 border-r-2 border-t-2 border-amber-400/30"></div>
         
-        <div className="text-center mb-12 relative">
-          <h2 className="text-3xl font-light tracking-tight text-slate-900 dark:text-slate-100 mb-6">
+        <div className="text-center mb-8 md:mb-12 relative px-4 md:px-6">
+          <h2 className="text-2xl md:text-3xl font-light tracking-tight text-slate-900 dark:text-slate-100 mb-4 md:mb-6">
             🍽️ Food & Dining
           </h2>
           
           {/* Golden accent line */}
-          <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-8"></div>
+          <div className="w-16 md:w-20 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-6 md:mb-8"></div>
           
-          <p className="text-lg text-slate-700 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-slate-700 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
             Discover Haiti&apos;s culinary treasures, from authentic restaurants to local markets and specialty stores.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          <Link href="/food/restaurants" className="relative group bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-white/90 dark:hover:bg-slate-800/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
-            <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 px-4 md:px-6">
+          <Link href="/food/restaurants" className="relative group bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-4 md:p-6 text-center hover:border-amber-400/60 hover:bg-white/90 dark:hover:bg-slate-800/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
+            <div className="absolute top-3 right-3 w-4 h-4 md:w-6 md:h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
             
-            <div className="relative mb-6 overflow-hidden rounded-xl">
+            <div className="relative mb-4 md:mb-6 overflow-hidden rounded-xl">
               <Image
                 src="/restaurant.jpg"
                 alt="Restaurant"
                 width={300}
                 height={160}
-                className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-32 md:h-40 object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-amber-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
             
-            <div className="text-2xl mb-4">🍴</div>
-            <h3 className="font-semibold text-xl mb-3 text-slate-900 dark:text-slate-100 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors duration-300">Restaurants</h3>
+            <div className="text-xl md:text-2xl mb-3 md:mb-4">🍴</div>
+            <h3 className="font-semibold text-lg md:text-xl mb-2 md:mb-3 text-slate-900 dark:text-slate-100 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors duration-300">Restaurants</h3>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Find authentic Haitian cuisine and international dining options</p>
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
           </Link>
 
-          <Link href="/food/supermarkets" className="relative group bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-white/90 dark:hover:bg-slate-800/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
-            <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
+          <Link href="/food/supermarkets" className="relative group bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-4 md:p-6 text-center hover:border-amber-400/60 hover:bg-white/90 dark:hover:bg-slate-800/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
+            <div className="absolute top-3 right-3 w-4 h-4 md:w-6 md:h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
             
-            <div className="relative mb-6 overflow-hidden rounded-xl">
+            <div className="relative mb-4 md:mb-6 overflow-hidden rounded-xl">
               <Image
                 src="/market.jpg"
                 alt="Supermarket"
                 width={300}
                 height={160}
-                className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-32 md:h-40 object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-amber-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
             
-            <div className="text-2xl mb-4">🛒</div>
-            <h3 className="font-semibold text-xl mb-3 text-slate-900 dark:text-slate-100 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors duration-300">Supermarkets</h3>
+            <div className="text-xl md:text-2xl mb-3 md:mb-4">🛒</div>
+            <h3 className="font-semibold text-lg md:text-xl mb-2 md:mb-3 text-slate-900 dark:text-slate-100 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors duration-300">Supermarkets</h3>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Grocery stores and markets for daily essentials and local products</p>
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
           </Link>
 
-          <Link href="/food/local-business" className="relative group bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-white/90 dark:hover:bg-slate-800/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
-            <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
+          <Link href="/food/local-business" className="relative group bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-4 md:p-6 text-center hover:border-amber-400/60 hover:bg-white/90 dark:hover:bg-slate-800/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
+            <div className="absolute top-3 right-3 w-4 h-4 md:w-6 md:h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
             
-            <div className="relative mb-6 overflow-hidden rounded-xl">
+            <div className="relative mb-4 md:mb-6 overflow-hidden rounded-xl">
               <Image
                 src="/local.jpg"
                 alt="Local Business"
                 width={300}
                 height={160}
-                className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-32 md:h-40 object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-amber-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
             
-            <div className="text-2xl mb-4">🏪</div>
-            <h3 className="font-semibold text-xl mb-3 text-slate-900 dark:text-slate-100 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors duration-300">Local Business</h3>
+            <div className="text-xl md:text-2xl mb-3 md:mb-4">🏪</div>
+            <h3 className="font-semibold text-lg md:text-xl mb-2 md:mb-3 text-slate-900 dark:text-slate-100 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors duration-300">Local Business</h3>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Specialty food stores, bakeries, and local food vendors</p>
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
           </Link>
