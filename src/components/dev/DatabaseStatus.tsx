@@ -13,7 +13,7 @@ export function DatabaseStatus() {
       const data = await response.json();
       setStatus(data.connected ? 'connected' : 'disconnected');
       setLastCheck(new Date());
-    } catch (error) {
+    } catch {
       setStatus('disconnected');
       setLastCheck(new Date());
     }

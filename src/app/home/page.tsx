@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { prisma, safeDbOperation, checkDatabaseConnection } from "@/lib/db";
 import { DatabaseErrorState } from "@/components/ui/ErrorState";
-import { DepartmentCardSkeleton } from "@/components/ui/LoadingState";
 import { DepartmentsSection } from "@/components/DepartmentsSection";
 
 interface Department {
@@ -13,21 +12,6 @@ interface Department {
   hero_url: string | null;
 }
 
-interface UpcomingEvent {
-  id: string;
-  name: string;
-  slug: string;
-  description: string | null;
-  event_date: Date | null;
-  city: {
-    name: string;
-    slug: string;
-    department: {
-      name: string;
-      slug: string;
-    };
-  };
-}
 
 // Custom department order as specified
 const departmentOrder = ['nord', 'sud', 'sud-est', 'nord-est', 'nord-ouest', 'centre', 'artibonite', 'nippes', 'grand-anse', 'ouest'];

@@ -37,9 +37,9 @@ export default function LandingPage() {
           <div className={`mb-8 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-4 drop-shadow-2xl [text-shadow:_0_0_40px_rgb(0_0_0_/_50%)] relative">
               <span className="relative z-10 bg-gradient-to-b from-white via-white to-gray-200 bg-clip-text text-transparent">
-                Lakaya'm
+                Lakaya&apos;m
               </span>
-              <span className="absolute inset-0 text-white/20 blur-sm">Lakaya'm</span>
+              <span className="absolute inset-0 text-white/20 blur-sm">Lakaya&apos;m</span>
             </h1>
             <div className={`w-32 h-0.5 bg-gradient-to-r from-transparent via-white to-transparent mx-auto mb-6 transition-all duration-1000 delay-300 ${mounted ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'} shadow-lg`}></div>
             <p className={`text-xl md:text-2xl font-semibold text-white tracking-[0.2em] transition-all duration-1000 delay-500 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} drop-shadow-xl [text-shadow:_0_0_20px_rgb(0_0_0_/_70%)] uppercase`}>

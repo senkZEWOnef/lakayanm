@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { prisma, safeDbOperation, checkDatabaseConnection } from "@/lib/db";
 import { DatabaseErrorState } from "@/components/ui/ErrorState";
-import { DepartmentCardSkeleton } from "@/components/ui/LoadingState";
 
 export const dynamic = "force-dynamic";
 

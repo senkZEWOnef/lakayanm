@@ -6,7 +6,7 @@ async function main() {
   console.log("🌱 Seeding database...");
 
   // Insert plans
-  const plans = await Promise.all([
+  await Promise.all([
     prisma.business_plans.upsert({
       where: { code: "starter" },
       update: {},
@@ -396,7 +396,7 @@ async function main() {
     const department = createdDepartments.find(d => d.slug === deptData.departmentSlug);
     if (department) {
       for (const cityData of deptData.cities) {
-        let city = await prisma.cities.findFirst({
+        const city = await prisma.cities.findFirst({
           where: { department_id: department.id, slug: cityData.slug }
         });
         
