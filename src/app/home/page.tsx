@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { prisma, retryPrismaOperation } from "@/lib/db";
+import { prisma, safeDbOperation, checkDatabaseConnection } from "@/lib/db";
+import { DatabaseErrorState } from "@/components/ui/ErrorState";
+import { DepartmentCardSkeleton } from "@/components/ui/LoadingState";
 
 interface Department {
   id: string;
@@ -27,40 +29,36 @@ interface UpcomingEvent {
 }
 
 export default async function HomePage() {
-  let departments: Department[] = [];
-  let upcomingEvents: UpcomingEvent[] = [];
+  // Check database connection first
+  const isDbConnected = await checkDatabaseConnection();
   
-  try {
-    // Get departments for overview
-    departments = await retryPrismaOperation(() =>
-      prisma.departments.findMany({
-        where: { is_published: true },
-        orderBy: { name: "asc" },
-      })
-    );
+  // Get departments with retry logic
+  const departments = await safeDbOperation(
+    () => prisma.departments.findMany({
+      where: { is_published: true },
+      orderBy: { name: "asc" },
+    }),
+    [] // fallback to empty array
+  );
 
-    // Get upcoming events
-    upcomingEvents = await retryPrismaOperation(() =>
-      prisma.places.findMany({
-        where: { 
-          kind: 'event',
-          is_published: true,
-          event_date: { gte: new Date() }
-        },
-        include: { 
-          city: { 
-            include: { department: true } 
-          } 
-        },
-        take: 4,
-        orderBy: { event_date: 'asc' }
-      })
-    );
-
-  } catch (error) {
-    console.error('Database connection error:', error);
-    // Return empty arrays to show page with error message
-  }
+  // Get upcoming events with retry logic
+  const upcomingEvents = await safeDbOperation(
+    () => prisma.places.findMany({
+      where: { 
+        kind: 'event',
+        is_published: true,
+        event_date: { gte: new Date() }
+      },
+      include: { 
+        city: { 
+          include: { department: true } 
+        } 
+      },
+      take: 4,
+      orderBy: { event_date: 'asc' }
+    }),
+    [] // fallback to empty array
+  );
 
   return (
     <div className="space-y-16">
@@ -115,12 +113,13 @@ export default async function HomePage() {
           </p>
         </div>
 
-        {departments.length === 0 ? (
-          <div className="card text-center">
-            <h3 className="font-semibold mb-2">🔌 Database Connection Issue</h3>
-            <p className="sub">
-              We&apos;re having trouble connecting to our database right now. Please try again in a moment.
-            </p>
+        {!isDbConnected ? (
+          <DatabaseErrorState />
+        ) : departments === null || departments.length === 0 ? (
+          <div className="grid md:grid-cols-3 gap-6">
+            {Array.from({ length: 9 }).map((_, i) => (
+              <DepartmentCardSkeleton key={i} />
+            ))}
           </div>
         ) : (
           <div className="grid md:grid-cols-3 gap-6">
@@ -162,7 +161,7 @@ export default async function HomePage() {
 
 
       {/* Upcoming Events */}
-      {upcomingEvents.length > 0 && (
+      {isDbConnected && upcomingEvents && upcomingEvents.length > 0 && (
         <section>
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold mb-4">📅 Upcoming Events</h2>

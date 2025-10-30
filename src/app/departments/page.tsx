@@ -1,28 +1,23 @@
 import Link from "next/link";
 import Image from "next/image";
-import { prisma } from "@/lib/db";
+import { prisma, safeDbOperation, checkDatabaseConnection } from "@/lib/db";
+import { DatabaseErrorState } from "@/components/ui/ErrorState";
+import { DepartmentCardSkeleton } from "@/components/ui/LoadingState";
 
 export const dynamic = "force-dynamic";
 
 export default async function DepartmentsPage() {
-  let data: Array<{
-    id: string;
-    slug: string;
-    name: string;
-    intro: string | null;
-    hero_url: string | null;
-    is_published: boolean;
-    created_at: Date;
-  }> = [];
-  try {
-    data = await prisma.departments.findMany({
+  // Check database connection
+  const isDbConnected = await checkDatabaseConnection();
+  
+  // Get departments with retry logic
+  const data = await safeDbOperation(
+    () => prisma.departments.findMany({
       where: { is_published: true },
       orderBy: { name: "asc" },
-    });
-  } catch (error) {
-    console.error('Database connection error:', error);
-    // Return empty array to show page with error message
-  }
+    }),
+    [] // fallback to empty array
+  );
 
   return (
     <div className="space-y-8">
@@ -36,12 +31,13 @@ export default async function DepartmentsPage() {
           Each region offers its own cultural treasures, culinary traditions, and stories.
         </p>
       </div>
-      {data.length === 0 ? (
-        <div className="card text-center">
-          <h3 className="font-semibold mb-2">🔌 Database Connection Issue</h3>
-          <p className="sub">
-            We&apos;re having trouble connecting to our database right now. Please try again in a moment.
-          </p>
+      {!isDbConnected ? (
+        <DatabaseErrorState />
+      ) : data === null || data.length === 0 ? (
+        <div className="grid-auto">
+          {Array.from({ length: 9 }).map((_, i) => (
+            <DepartmentCardSkeleton key={i} />
+          ))}
         </div>
       ) : (
         <div className="grid-auto">
