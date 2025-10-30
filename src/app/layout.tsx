@@ -5,6 +5,7 @@ import { DatabaseStatus } from "@/components/dev/DatabaseStatus";
 export const metadata = {
   title: "Lakaya'm",
   description: "Discover Haiti, one city at a time.",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
 };
 
 export default function RootLayout({
@@ -15,23 +16,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <header className="border-b border-haiti-teal/20 dark:border-haiti-navy bg-white/90 dark:bg-haiti-midnight/90 backdrop-blur">
+        <header className="border-b border-amber-200/30 dark:border-amber-400/20 bg-white/90 dark:bg-slate-800/90 backdrop-blur">
           <nav className="container-lg flex items-center justify-between py-4">
-            <Link href="/" className="text-xl font-bold text-brand hover:text-brand-dark transition-colors">
+            <Link href="/" className="text-xl font-bold text-amber-600 hover:text-amber-700 transition-colors">
               Lakaya&apos;m
             </Link>
             <div className="flex gap-3">
-              <Link className="btn hover:border-brand/50 hover:bg-brand/5" href="/about">
+              <Link className="btn hover:border-amber-400/50 hover:bg-amber-50/50" href="/about">
                 About
               </Link>
-              <Link className="btn hover:border-brand/50 hover:bg-brand/5" href="/auth/login">
+              <Link className="btn hover:border-amber-400/50 hover:bg-amber-50/50" href="/auth/login">
                 Log In
               </Link>
             </div>
           </nav>
         </header>
-        <main className="container-lg py-8">{children}</main>
-        <footer className="bg-haiti-midnight dark:bg-haiti-midnight border-t-2 border-amber-400/30 relative">
+        <main className="min-h-screen bg-slate-50 dark:bg-slate-900">{children}</main>
+        <footer className="bg-slate-800 dark:bg-slate-900 border-t-2 border-amber-400/30 relative">
           {/* Golden top accent line */}
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
           
