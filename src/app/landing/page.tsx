@@ -119,9 +119,9 @@ export default function LandingPage() {
             </div>
             
             <div className={`flex items-center justify-center gap-8 text-sm text-white/70 font-medium transition-all duration-1000 delay-1200 ${mounted ? 'opacity-100' : 'opacity-0'} tracking-widest uppercase`}>
-              <span className="hover:text-white hover:scale-105 transition-all duration-200 drop-shadow-lg [text-shadow:_0_0_10px_rgb(0_0_0_/_50%)]">9 Departments</span>
+              <span className="hover:text-white hover:scale-105 transition-all duration-200 drop-shadow-lg [text-shadow:_0_0_10px_rgb(0_0_0_/_50%)]">10 Departments</span>
               <span className="w-px h-4 bg-white/50 shadow-sm"></span>
-              <span className="hover:text-white hover:scale-105 transition-all duration-200 drop-shadow-lg [text-shadow:_0_0_10px_rgb(0_0_0_/_50%)]">27 Cities</span>
+              <span className="hover:text-white hover:scale-105 transition-all duration-200 drop-shadow-lg [text-shadow:_0_0_10px_rgb(0_0_0_/_50%)]">30 Cities</span>
               <span className="w-px h-4 bg-white/50 shadow-sm"></span>
               <span className="hover:text-white hover:scale-105 transition-all duration-200 drop-shadow-lg [text-shadow:_0_0_10px_rgb(0_0_0_/_50%)]">Countless Stories</span>
             </div>

@@ -57,7 +57,7 @@ async function main() {
     },
     {
       slug: "nord-ouest",
-      name: "Nord-Ouest — Desert Beauty & Resistance",
+      name: "Nord-Ouest",
       intro: "Remote and rugged, birthplace of the first black revolutionaries. Where Columbus first landed in 1492.",
       hero_url: "https://images.unsplash.com/photo-1469474968028-56623f02e42e",
     },
