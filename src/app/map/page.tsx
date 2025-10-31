@@ -20,7 +20,7 @@ export default function MapPage() {
             </h1>
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-6"></div>
             <p className="text-white/80 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-              Discover Haiti's 10 departments and their vibrant cities through our interactive map. 
+              Discover Haiti&apos;s 10 departments and their vibrant cities through our interactive map. 
               Click on any region to explore its unique culture, history, and hidden treasures.
             </p>
           </div>

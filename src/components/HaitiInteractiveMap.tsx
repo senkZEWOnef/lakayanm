@@ -297,7 +297,6 @@ export default function HaitiInteractiveMap({
           {DEPARTMENTS.map((d) => {
             const isActive = selectedKey === d.key;
             const isHovered = hoveredKey === d.key;
-            const isOtherSelected = selectedKey && selectedKey !== d.key;
             
             return (
               <g key={d.key} className="cursor-pointer">
