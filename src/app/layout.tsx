@@ -29,6 +29,9 @@ export default function RootLayout({
               Lakaya&apos;m
             </Link>
             <div className="flex gap-2 md:gap-3">
+              <Link className="btn hover:border-amber-400/50 hover:bg-amber-500/20 text-white text-sm md:text-base" href="/map">
+                Map
+              </Link>
               <Link className="btn hover:border-amber-400/50 hover:bg-amber-500/20 text-white text-sm md:text-base" href="/about">
                 About
               </Link>

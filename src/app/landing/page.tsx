@@ -81,6 +81,13 @@ export default function LandingPage() {
                 <span className="relative z-10">Cities</span>
               </Link>
 
+              <Link
+                href="/map"
+                className="group relative px-4 md:px-6 py-2 md:py-3 bg-slate-800/60 backdrop-blur-sm border border-amber-400/40 text-white font-medium tracking-wide hover:bg-slate-800/80 hover:border-amber-400/60 transition-all duration-300 text-sm md:text-base"
+              >
+                <span className="relative z-10">Map</span>
+              </Link>
+
               {/* Culture Dropdown */}
               <div className="group relative">
                 <button className="px-4 md:px-6 py-2 md:py-3 bg-slate-800/60 backdrop-blur-sm border border-amber-400/40 text-white font-medium tracking-wide hover:bg-slate-800/80 hover:border-amber-400/60 transition-all duration-300 flex items-center gap-2 text-sm md:text-base">
