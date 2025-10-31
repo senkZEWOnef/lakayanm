@@ -9,18 +9,16 @@ export function MobileDebug() {
   useEffect(() => {
     setMounted(true);
     if (typeof window !== 'undefined') {
+      const mainEl = document.querySelector('main');
+      const pageDiv = document.querySelector('.min-h-screen');
+      
       setInfo({
         userAgent: navigator.userAgent,
-        isMobile: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent),
-        isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent),
-        isSafari: /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent),
-        screenWidth: window.screen.width,
-        screenHeight: window.screen.height,
-        windowWidth: window.innerWidth,
-        windowHeight: window.innerHeight,
-        devicePixelRatio: window.devicePixelRatio,
+        bodyBgColor: getComputedStyle(document.body).backgroundColor,
+        mainBgColor: mainEl ? getComputedStyle(mainEl).backgroundColor : 'not found',
+        pageDivBgColor: pageDiv ? getComputedStyle(pageDiv).backgroundColor : 'not found',
         colorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
-        bodyBgColor: getComputedStyle(document.body).backgroundColor
+        htmlBgColor: getComputedStyle(document.documentElement).backgroundColor,
       });
     }
   }, []);
