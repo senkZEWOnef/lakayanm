@@ -139,7 +139,6 @@ export default function RootLayout({
           </div>
         </footer>
         <DatabaseStatus />
-        <MobileDebug />
       </body>
     </html>
   );

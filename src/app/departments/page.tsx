@@ -31,7 +31,7 @@ export default async function DepartmentsPage() {
           priority
         />
         {/* Very subtle overlay for content readability */}
-        <div className="absolute inset-0 bg-white/70 dark:bg-slate-900/80"></div>
+        <div className="absolute inset-0 bg-slate-800/40 dark:bg-slate-900/80"></div>
       </div>
 
       <div className="relative z-10 space-y-16 px-6 py-12">
