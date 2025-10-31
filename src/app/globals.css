@@ -91,3 +91,43 @@ html, body {
     @apply hidden sm:block;
   }
 }
+
+/* Force dark background on mobile devices */
+@media (max-width: 768px) {
+  html, body {
+    background-color: #1e293b !important;
+    background: #1e293b !important;
+  }
+  
+  main {
+    background-color: #1e293b !important;
+    background: #1e293b !important;
+  }
+  
+  .min-h-screen {
+    background-color: #1e293b !important;
+    background: #1e293b !important;
+  }
+  
+  header {
+    background-color: rgba(30, 41, 59, 0.95) !important;
+    background: rgba(30, 41, 59, 0.95) !important;
+  }
+  
+  /* Override any white backgrounds on mobile */
+  .bg-white, 
+  .bg-white\/90, 
+  .bg-white\/80, 
+  .bg-white\/70, 
+  .bg-white\/60, 
+  .bg-white\/50 {
+    background-color: rgba(30, 41, 59, 0.8) !important;
+    background: rgba(30, 41, 59, 0.8) !important;
+  }
+  
+  /* Fix dropdown and overlay backgrounds */
+  .backdrop-blur-sm,
+  .backdrop-blur {
+    background-color: rgba(30, 41, 59, 0.9) !important;
+  }
+}

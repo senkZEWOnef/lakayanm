@@ -11,14 +11,17 @@ export function MobileDebug() {
     if (typeof window !== 'undefined') {
       const mainEl = document.querySelector('main');
       const pageDiv = document.querySelector('.min-h-screen');
+      const firstCard = document.querySelector('[class*="bg-white"]');
+      const overlay = document.querySelector('[class*="bg-slate-800"]');
       
       setInfo({
-        userAgent: navigator.userAgent,
-        bodyBgColor: getComputedStyle(document.body).backgroundColor,
-        mainBgColor: mainEl ? getComputedStyle(mainEl).backgroundColor : 'not found',
-        pageDivBgColor: pageDiv ? getComputedStyle(pageDiv).backgroundColor : 'not found',
+        userAgent: navigator.userAgent.split(' ')[2], // Show browser
+        bodyBg: getComputedStyle(document.body).backgroundColor,
+        mainBg: mainEl ? getComputedStyle(mainEl).backgroundColor : 'not found',
+        pageDivBg: pageDiv ? getComputedStyle(pageDiv).backgroundColor : 'not found',
+        firstCardBg: firstCard ? getComputedStyle(firstCard).backgroundColor : 'no white cards',
+        overlayBg: overlay ? getComputedStyle(overlay).backgroundColor : 'no overlay',
         colorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
-        htmlBgColor: getComputedStyle(document.documentElement).backgroundColor,
       });
     }
   }, []);

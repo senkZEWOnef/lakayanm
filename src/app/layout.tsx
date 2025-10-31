@@ -23,16 +23,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <header className="border-b border-amber-200/30 dark:border-amber-400/20 bg-white/90 dark:bg-slate-800/90 backdrop-blur">
-          <nav className="container-lg flex items-center justify-between py-4">
-            <Link href="/" className="text-xl font-bold text-amber-600 hover:text-amber-700 transition-colors">
+        <header className="border-b border-amber-200/30 dark:border-amber-400/20 bg-slate-800/95 backdrop-blur" style={{backgroundColor: 'rgba(30, 41, 59, 0.95)'}}>
+          <nav className="container-lg flex items-center justify-between py-3 md:py-4 px-4 md:px-6">
+            <Link href="/" className="text-lg md:text-xl font-bold text-amber-400 hover:text-amber-300 transition-colors">
               Lakaya&apos;m
             </Link>
-            <div className="flex gap-3">
-              <Link className="btn hover:border-amber-400/50 hover:bg-amber-50/50" href="/about">
+            <div className="flex gap-2 md:gap-3">
+              <Link className="btn hover:border-amber-400/50 hover:bg-amber-500/20 text-white text-sm md:text-base" href="/about">
                 About
               </Link>
-              <Link className="btn hover:border-amber-400/50 hover:bg-amber-50/50" href="/auth/login">
+              <Link className="btn hover:border-amber-400/50 hover:bg-amber-500/20 text-white text-sm md:text-base" href="/auth/login">
                 Log In
               </Link>
             </div>

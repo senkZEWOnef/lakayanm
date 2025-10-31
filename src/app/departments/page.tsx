@@ -36,28 +36,28 @@ export default async function DepartmentsPage() {
 
       <div className="relative z-10 space-y-16 px-6 py-12">
         {/* Header Section */}
-        <section className="text-center relative">
-          {/* Golden decorative corners */}
-          <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-amber-400/30"></div>
-          <div className="absolute top-0 right-0 w-12 h-12 border-r-2 border-t-2 border-amber-400/30"></div>
+        <section className="text-center relative px-4 md:px-6">
+          {/* Mobile-responsive golden decorative corners */}
+          <div className="absolute top-0 left-2 md:left-0 w-8 md:w-12 h-8 md:h-12 border-l-2 border-t-2 border-amber-400/30"></div>
+          <div className="absolute top-0 right-2 md:right-0 w-8 md:w-12 h-8 md:h-12 border-r-2 border-t-2 border-amber-400/30"></div>
           
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-light tracking-tight text-slate-900 dark:text-slate-100 mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-white mb-4 md:mb-6">
               Haiti&apos;s 10 Departments
             </h1>
             
             {/* Golden accent line */}
-            <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-8"></div>
+            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-6 md:mb-8"></div>
             
-            <p className="text-lg text-slate-700 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-3xl mx-auto leading-relaxed">
               Explore each of Haiti&apos;s unique departments, from the historic North to the scenic South. 
               Each region offers its own cultural treasures, culinary traditions, and stories.
             </p>
           </div>
           
           {/* Bottom golden accent lines */}
-          <div className="absolute bottom-0 left-0 w-12 h-12 border-l-2 border-b-2 border-amber-400/30"></div>
-          <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-amber-400/30"></div>
+          <div className="absolute bottom-0 left-2 md:left-0 w-8 md:w-12 h-8 md:h-12 border-l-2 border-b-2 border-amber-400/30"></div>
+          <div className="absolute bottom-0 right-2 md:right-0 w-8 md:w-12 h-8 md:h-12 border-r-2 border-b-2 border-amber-400/30"></div>
         </section>
         {/* Departments Grid Section */}
         <section className="relative">
