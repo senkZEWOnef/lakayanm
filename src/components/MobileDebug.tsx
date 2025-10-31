@@ -3,22 +3,29 @@
 import { useEffect, useState } from 'react';
 
 export function MobileDebug() {
-  const [info, setInfo] = useState<any>({});
+  const [info, setInfo] = useState<Record<string, unknown>>({});
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setInfo({
-      userAgent: navigator.userAgent,
-      isMobile: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent),
-      isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent),
-      isSafari: /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent),
-      screenWidth: window.screen.width,
-      screenHeight: window.screen.height,
-      windowWidth: window.innerWidth,
-      windowHeight: window.innerHeight,
-      devicePixelRatio: window.devicePixelRatio,
-      colorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    });
+    setMounted(true);
+    if (typeof window !== 'undefined') {
+      setInfo({
+        userAgent: navigator.userAgent,
+        isMobile: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent),
+        isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent),
+        isSafari: /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent),
+        screenWidth: window.screen.width,
+        screenHeight: window.screen.height,
+        windowWidth: window.innerWidth,
+        windowHeight: window.innerHeight,
+        devicePixelRatio: window.devicePixelRatio,
+        colorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+        bodyBgColor: getComputedStyle(document.body).backgroundColor
+      });
+    }
   }, []);
+
+  if (!mounted) return null;
 
   return (
     <div style={{
@@ -37,7 +44,6 @@ export function MobileDebug() {
       <h3>Mobile Debug Info:</h3>
       <pre>{JSON.stringify(info, null, 2)}</pre>
       <div>Background should be: #1e293b</div>
-      <div>Current body background: {getComputedStyle(document.body).backgroundColor}</div>
     </div>
   );
 }

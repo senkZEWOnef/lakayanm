@@ -6,7 +6,13 @@ import { MobileDebug } from "@/components/MobileDebug";
 export const metadata = {
   title: "Lakaya'm",
   description: "Discover Haiti, one city at a time.",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
