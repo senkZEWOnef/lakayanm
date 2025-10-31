@@ -99,14 +99,14 @@ html, body {
     background: #1e293b !important;
   }
   
-  main {
+  /* Don't override main elements that contain background images */
+  main:not(.relative) {
     background-color: #1e293b !important;
-    background: #1e293b !important;
   }
   
-  .min-h-screen {
+  /* Only apply to elements without background images */
+  .min-h-screen:not(.relative) {
     background-color: #1e293b !important;
-    background: #1e293b !important;
   }
   
   header {
@@ -129,5 +129,12 @@ html, body {
   .backdrop-blur-sm,
   .backdrop-blur {
     background-color: rgba(30, 41, 59, 0.9) !important;
+  }
+  
+  /* Ensure background images work on mobile */
+  .relative img,
+  .absolute img {
+    display: block !important;
+    visibility: visible !important;
   }
 }
