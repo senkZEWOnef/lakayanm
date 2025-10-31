@@ -229,63 +229,6 @@ export default async function HomePage() {
         <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-amber-400/30"></div>
       </section>
 
-      {/* Activities Section */}
-      <section className="relative">
-        {/* Golden decorative corners */}
-        <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-amber-400/30"></div>
-        <div className="absolute top-0 right-0 w-12 h-12 border-r-2 border-t-2 border-amber-400/30"></div>
-        
-        <div className="text-center mb-12 relative">
-          <h2 className="text-3xl font-light tracking-tight text-amber-200 mb-6">
-            🎭 <span className="text-amber-300">Activities & Entertainment</span>
-          </h2>
-          
-          {/* Golden accent line */}
-          <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-8"></div>
-          
-          <p className="text-lg text-amber-200 max-w-3xl mx-auto leading-relaxed">
-            Experience Haiti&apos;s vibrant cultural scene through music, arts, sports, and community events.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Link href="/activities/music" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
-            <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
-            <div className="text-4xl mb-4">🎵</div>
-            <h3 className="font-semibold text-lg mb-3 text-amber-100 group-hover:text-amber-200 transition-colors duration-300">Music</h3>
-            <p className="text-amber-300/80 text-sm leading-relaxed">Live music venues and concerts</p>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
-          </Link>
-
-          <Link href="/activities/theatres" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
-            <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
-            <div className="text-4xl mb-4">🎭</div>
-            <h3 className="font-semibold text-lg mb-3 text-amber-100 group-hover:text-amber-200 transition-colors duration-300">Theatres</h3>
-            <p className="text-amber-300/80 text-sm leading-relaxed">Cultural performances and shows</p>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
-          </Link>
-
-          <Link href="/activities/sports" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
-            <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
-            <div className="text-4xl mb-4">⚽</div>
-            <h3 className="font-semibold text-lg mb-3 text-amber-100 group-hover:text-amber-200 transition-colors duration-300">Sports</h3>
-            <p className="text-amber-300/80 text-sm leading-relaxed">Sports venues and activities</p>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
-          </Link>
-
-          <Link href="/activities/events" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
-            <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
-            <div className="text-4xl mb-4">📅</div>
-            <h3 className="font-semibold text-lg mb-3 text-amber-100 group-hover:text-amber-200 transition-colors duration-300">Events</h3>
-            <p className="text-amber-300/80 text-sm leading-relaxed">Community events and festivals</p>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
-          </Link>
-        </div>
-
-        {/* Bottom golden accent lines */}
-        <div className="absolute bottom-0 left-0 w-12 h-12 border-l-2 border-b-2 border-amber-400/30"></div>
-        <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-amber-400/30"></div>
-      </section>
 
       {/* Stays Section */}
       <section className="relative">
