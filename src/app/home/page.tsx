@@ -250,7 +250,7 @@ export default async function HomePage() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          <Link href="/stays/hotels" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
+          <Link href="/stays/hotels" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
             <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
             <div className="text-4xl mb-4">🏨</div>
             <h3 className="font-semibold text-xl mb-3 text-amber-100 group-hover:text-amber-200 transition-colors duration-300">Hotels</h3>
@@ -258,7 +258,7 @@ export default async function HomePage() {
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
           </Link>
 
-          <Link href="/stays/airbnb" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
+          <Link href="/stays/airbnb" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
             <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
             <div className="text-4xl mb-4">🏠</div>
             <h3 className="font-semibold text-xl mb-3 text-amber-100 group-hover:text-amber-200 transition-colors duration-300">Houses</h3>
@@ -266,7 +266,7 @@ export default async function HomePage() {
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
           </Link>
 
-          <Link href="/stays/rentals" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
+          <Link href="/stays/rentals" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
             <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
             <div className="text-4xl mb-4">🔑</div>
             <h3 className="font-semibold text-xl mb-3 text-amber-100 group-hover:text-amber-200 transition-colors duration-300">Rentals</h3>
@@ -280,7 +280,7 @@ export default async function HomePage() {
         <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-amber-400/30"></div>
       </section>
 
-      {/* History Section */}
+      {/* Landmarks & Historic Places Section */}
       <section className="relative">
         {/* Golden decorative corners */}
         <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-amber-400/30"></div>
@@ -288,89 +288,78 @@ export default async function HomePage() {
         
         <div className="text-center mb-12 relative">
           <h2 className="text-3xl font-light tracking-tight text-amber-200 mb-6">
-            📚 <span className="text-amber-300">History & Culture</span>
+            🏛️ <span className="text-amber-300">Landmarks & Historic Places</span>
           </h2>
           
           {/* Golden accent line */}
           <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-8"></div>
           
           <p className="text-lg text-amber-200 max-w-3xl mx-auto leading-relaxed">
-            Explore Haiti&apos;s rich historical heritage and learn about the stories that shaped each region.
+            Discover Haiti&apos;s most significant landmarks and historic sites with GPS navigation to guide your journey.
           </p>
         </div>
 
-        <div className="max-w-2xl mx-auto">
-          <Link href="/history" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 dark:border-amber-400/20 rounded-2xl p-8 text-center block hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
-            <div className="absolute top-4 right-4 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
-            <div className="text-5xl mb-6">🏛️</div>
-            <h3 className="font-semibold text-2xl mb-4 text-amber-100 group-hover:text-amber-200 transition-colors duration-300">Discover Haiti&apos;s History</h3>
-            <p className="text-amber-300/80 leading-relaxed mb-4">Learn about historical landmarks, important figures, and cultural heritage by city and region</p>
-            <div className="inline-flex items-center text-amber-600 dark:text-amber-400 font-medium">
-              <span>Explore by City</span>
-              <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+        <div className="grid md:grid-cols-3 gap-6">
+          <Link href="/landmarks/citadelle" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
+            <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
+            <div className="text-4xl mb-4">🏰</div>
+            <h3 className="font-semibold text-xl mb-3 text-amber-100 group-hover:text-amber-200 transition-colors duration-300">Citadelle Laferrière</h3>
+            <p className="text-amber-300/80 text-sm leading-relaxed mb-4">Historic fortress and UNESCO World Heritage site</p>
+            <div className="flex items-center justify-center gap-2 text-amber-400 text-xs font-medium">
+              <span>📍</span>
+              <span>GPS Navigation Available</span>
+            </div>
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
+          </Link>
+
+          <Link href="/landmarks/palais-national" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
+            <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
+            <div className="text-4xl mb-4">🏛️</div>
+            <h3 className="font-semibold text-xl mb-3 text-amber-100 group-hover:text-amber-200 transition-colors duration-300">Historic Monuments</h3>
+            <p className="text-amber-300/80 text-sm leading-relaxed mb-4">Presidential palaces and government buildings</p>
+            <div className="flex items-center justify-center gap-2 text-amber-400 text-xs font-medium">
+              <span>🗺️</span>
+              <span>Turn-by-Turn Directions</span>
+            </div>
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
+          </Link>
+
+          <Link href="/landmarks/museums" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
+            <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
+            <div className="text-4xl mb-4">🏺</div>
+            <h3 className="font-semibold text-xl mb-3 text-amber-100 group-hover:text-amber-200 transition-colors duration-300">Museums & Culture</h3>
+            <p className="text-amber-300/80 text-sm leading-relaxed mb-4">Cultural centers and historical museums</p>
+            <div className="flex items-center justify-center gap-2 text-amber-400 text-xs font-medium">
+              <span>🧭</span>
+              <span>Interactive Maps</span>
             </div>
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
           </Link>
         </div>
 
-        {/* Bottom golden accent lines */}
-        <div className="absolute bottom-0 left-0 w-12 h-12 border-l-2 border-b-2 border-amber-400/30"></div>
-        <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-amber-400/30"></div>
-      </section>
-
-      {/* Advertisement Section */}
-      <section className="relative">
-        {/* Golden decorative corners */}
-        <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-amber-400/30"></div>
-        <div className="absolute top-0 right-0 w-12 h-12 border-r-2 border-t-2 border-amber-400/30"></div>
-        
-        <div className="text-center mb-12 relative">
-          <h2 className="text-3xl font-light tracking-tight text-amber-200 mb-6">
-            📢 <span className="text-amber-300">Featured Partners</span>
-          </h2>
-          
-          {/* Golden accent line */}
-          <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-8"></div>
-          
-          <p className="text-lg text-amber-200 max-w-3xl mx-auto leading-relaxed">
-            Discover trusted local businesses and services across Haiti.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Advertisement Placeholders */}
-          <div className="relative group bg-slate-800/90 backdrop-blur-sm border-2 border-dashed border-amber-300/50 dark:border-amber-400/30 rounded-2xl p-8 text-center hover:border-amber-400/60 transition-all duration-300">
-            <div className="text-4xl mb-4 text-amber-400">📱</div>
-            <h3 className="font-semibold text-lg mb-3 text-amber-300/80">Ad Space Available</h3>
-            <p className="text-amber-300/70 text-sm">Promote your business here</p>
-            <div className="mt-4">
-              <button className="px-4 py-2 bg-amber-400/20 border border-amber-400/40 text-amber-700 dark:text-amber-300 rounded-lg text-sm hover:bg-amber-400/30 transition-colors duration-300">
-                Learn More
-              </button>
+        {/* How to Get There Info Box */}
+        <div className="mt-8 max-w-4xl mx-auto">
+          <div className="bg-slate-800/90 backdrop-blur-sm border border-amber-400/30 rounded-2xl p-6 text-center">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <span className="text-2xl">🧭</span>
+              <h3 className="text-xl font-semibold text-amber-300">How to Get There</h3>
             </div>
-          </div>
-
-          <div className="relative group bg-slate-800/90 backdrop-blur-sm border-2 border-dashed border-amber-300/50 dark:border-amber-400/30 rounded-2xl p-8 text-center hover:border-amber-400/60 transition-all duration-300">
-            <div className="text-4xl mb-4 text-amber-400">🏢</div>
-            <h3 className="font-semibold text-lg mb-3 text-amber-300/80">Business Spotlight</h3>
-            <p className="text-slate-500 dark:text-slate-500 text-sm">Feature your services</p>
-            <div className="mt-4">
-              <button className="px-4 py-2 bg-amber-400/20 border border-amber-400/40 text-amber-700 dark:text-amber-300 rounded-lg text-sm hover:bg-amber-400/30 transition-colors duration-300">
-                Get Featured
-              </button>
-            </div>
-          </div>
-
-          <div className="relative group bg-slate-800/90 backdrop-blur-sm border-2 border-dashed border-amber-300/50 dark:border-amber-400/30 rounded-2xl p-8 text-center hover:border-amber-400/60 transition-all duration-300">
-            <div className="text-4xl mb-4 text-amber-400">🎯</div>
-            <h3 className="font-semibold text-lg mb-3 text-amber-300/80">Premium Listing</h3>
-            <p className="text-slate-500 dark:text-slate-500 text-sm">Reach more customers</p>
-            <div className="mt-4">
-              <button className="px-4 py-2 bg-amber-400/20 border border-amber-400/40 text-amber-700 dark:text-amber-300 rounded-lg text-sm hover:bg-amber-400/30 transition-colors duration-300">
-                Start Now
-              </button>
+            <p className="text-amber-200 mb-4 leading-relaxed">
+              Each landmark includes detailed GPS coordinates, turn-by-turn directions, and local transportation options to help you reach your destination safely.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4 text-sm">
+              <div className="flex items-center justify-center gap-2 text-amber-400">
+                <span>📱</span>
+                <span>Mobile GPS Support</span>
+              </div>
+              <div className="flex items-center justify-center gap-2 text-amber-400">
+                <span>🚗</span>
+                <span>Driving Directions</span>
+              </div>
+              <div className="flex items-center justify-center gap-2 text-amber-400">
+                <span>🚌</span>
+                <span>Public Transport Info</span>
+              </div>
             </div>
           </div>
         </div>
@@ -379,6 +368,8 @@ export default async function HomePage() {
         <div className="absolute bottom-0 left-0 w-12 h-12 border-l-2 border-b-2 border-amber-400/30"></div>
         <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-amber-400/30"></div>
       </section>
+
+
 
       {/* Upcoming Events */}
       {isDbConnected && upcomingEvents && upcomingEvents.length > 0 && (

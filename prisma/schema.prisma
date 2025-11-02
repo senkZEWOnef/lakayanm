@@ -158,6 +158,18 @@ model places {
   activity_type activity_type?
   event_date   DateTime? // For events
   event_end_date DateTime? // For multi-day events
+  
+  // GPS Navigation Features
+  gps_coordinates String?   // Formatted coordinates for GPS apps
+  directions_text String?   // Turn-by-turn directions description
+  transport_info  Json?     // Public transport options
+  parking_info    String?   // Parking availability and instructions
+  best_visiting_time String? // Best time to visit
+  entrance_fee    String?   // Cost information
+  guided_tours    Boolean   @default(false) // Whether guided tours are available
+  accessibility   String?   // Accessibility information
+  historical_significance String? // Historical importance/background
+  unesco_site     Boolean   @default(false) // UNESCO World Heritage status
 
   city   cities   @relation(fields: [city_id], references: [id])
   owner  User? @relation("UserPlaces", fields: [owner_id], references: [id])
