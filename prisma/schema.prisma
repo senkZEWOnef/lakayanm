@@ -1,50 +1,29 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "debian-openssl-3.0.x"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
-enum place_kind {
-  restaurant
-  hotel
-  beach
-  landmark
-  shop
-  tour
-  activity
-  event
-}
-
-enum activity_type {
-  cultural
-  outdoor
-  nightlife
-  sports
-  family
-  spiritual
-}
-
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  name      String?
-  role      String   @default("user")
+  id            String          @id @default(cuid())
+  email         String          @unique
+  password      String
+  name          String?
+  role          String          @default("user")
   emailVerified DateTime?
-  image     String?
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  accounts Account[]
-  sessions Session[]
-  places    places[] @relation("UserPlaces")
+  image         String?
+  created_at    DateTime        @default(now())
+  updated_at    DateTime        @updatedAt
+  accounts      Account[]
+  places        places[]        @relation("UserPlaces")
+  reviews       reviews[]       @relation("UserReviews")
+  sessions      Session[]
   subscriptions subscriptions[] @relation("UserSubscriptions")
-  reviews   reviews[] @relation("UserReviews")
 
   @@map("users")
 }
@@ -55,15 +34,14 @@ model Account {
   type              String
   provider          String
   providerAccountId String  @map("provider_account_id")
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@map("accounts")
@@ -89,148 +67,133 @@ model VerificationToken {
 }
 
 model profiles {
-  id        String   @id
-  full_name String?
-  role      String   @default("user")
+  id         String   @id
+  full_name  String?
+  role       String   @default("user")
   created_at DateTime @default(now())
 }
 
 model departments {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  slug        String   @unique
-  name        String
-  intro       String?
-  hero_url    String?
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  slug         String   @unique
+  name         String
+  intro        String?
+  hero_url     String?
   is_published Boolean  @default(true)
-  created_at  DateTime  @default(now())
-
-  cities      cities[]
+  created_at   DateTime @default(now())
+  cities       cities[]
 }
 
 model cities {
-  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  department_id String  @db.Uuid
-  slug         String
-  name         String
-  summary      String?
-  lat          Float?
-  lng          Float?
-  hero_url     String?
-  is_published Boolean   @default(true)
-  created_at   DateTime  @default(now())
-
-  department departments @relation(fields: [department_id], references: [id])
-  places     places[]
-  figures    figures[]
-  media      media[]
-  streets    streets[]
+  id                String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  department_id     String              @db.Uuid
+  slug              String
+  name              String
+  summary           String?
+  lat               Float?
+  lng               Float?
+  hero_url          String?
+  is_published      Boolean             @default(true)
+  created_at        DateTime            @default(now())
+  department        departments         @relation(fields: [department_id], references: [id])
+  figures           figures[]
   historical_events historical_events[]
+  media             media[]
+  places            places[]
+  streets           streets[]
 
   @@unique([department_id, slug])
 }
 
 model places {
-  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  city_id      String   @db.Uuid
-  kind         place_kind
-  name         String
-  slug         String
-  description  String?
-  address      String?
-  phone        String?
-  website      String?
-  order_url    String?
-  booking_url  String?
-  price_range  String?
-  lat          Float?
-  lng          Float?
-  cover_url    String?
-  is_published Boolean  @default(true)
-  is_featured  Boolean  @default(false)
-  owner_id     String?  // User.id
-  created_at   DateTime @default(now())
-
-  // Enhanced features
-  menu_url     String?  // Link to menu PDF/page
-  menu_items   Json?    // Structured menu data
-  booking_phone String? // Direct booking phone
-  opening_hours Json?   // Operating hours
-  activity_type activity_type?
-  event_date   DateTime? // For events
-  event_end_date DateTime? // For multi-day events
-  
-  // GPS Navigation Features
-  gps_coordinates String?   // Formatted coordinates for GPS apps
-  directions_text String?   // Turn-by-turn directions description
-  transport_info  Json?     // Public transport options
-  parking_info    String?   // Parking availability and instructions
-  best_visiting_time String? // Best time to visit
-  entrance_fee    String?   // Cost information
-  guided_tours    Boolean   @default(false) // Whether guided tours are available
-  accessibility   String?   // Accessibility information
-  historical_significance String? // Historical importance/background
-  unesco_site     Boolean   @default(false) // UNESCO World Heritage status
-
-  city   cities   @relation(fields: [city_id], references: [id])
-  owner  User? @relation("UserPlaces", fields: [owner_id], references: [id])
-  media  media[]
-  views  place_views[]
-  reviews reviews[]
+  id                      String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  city_id                 String         @db.Uuid
+  kind                    place_kind
+  name                    String
+  slug                    String
+  description             String?
+  address                 String?
+  phone                   String?
+  website                 String?
+  order_url               String?
+  booking_url             String?
+  price_range             String?
+  lat                     Float?
+  lng                     Float?
+  cover_url               String?
+  is_published            Boolean        @default(true)
+  owner_id                String?
+  created_at              DateTime       @default(now())
+  activity_type           activity_type?
+  booking_phone           String?
+  event_date              DateTime?
+  event_end_date          DateTime?
+  is_featured             Boolean        @default(false)
+  menu_items              Json?
+  menu_url                String?
+  opening_hours           Json?
+  accessibility           String?
+  best_visiting_time      String?
+  directions_text         String?
+  entrance_fee            String?
+  gps_coordinates         String?
+  guided_tours            Boolean        @default(false)
+  historical_significance String?
+  parking_info            String?
+  transport_info          Json?
+  unesco_site             Boolean        @default(false)
+  media                   media[]
+  views                   place_views[]
+  city                    cities         @relation(fields: [city_id], references: [id])
+  owner                   User?          @relation("UserPlaces", fields: [owner_id], references: [id])
+  reviews                 reviews[]
 
   @@unique([city_id, slug])
 }
 
 model figures {
-  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  city_id      String   @db.Uuid
-  name         String
-  slug         String
-  bio          String?
-  birth_year   Int?
-  death_year   Int?
-  portrait_url String?
-  is_published Boolean   @default(true)
-  created_at   DateTime  @default(now())
-
-  // Enhanced biographical details
-  full_name    String?  // Full name including titles
-  category     String?  // Revolutionary, Writer, Musician, Politician, etc.
-  birth_place  String?  // Specific birthplace
-  death_place  String?  // Where they died
-  legacy       String?  // Their lasting impact/legacy
-  famous_works String?  // Books, songs, achievements
-  
-  // Address & location details
-  lived_addresses Json?  // Array of addresses where they lived
-  worked_addresses Json? // Places where they worked/created
-  monuments    Json?     // Monuments/memorials dedicated to them
-  
-  // Cultural connections
-  contemporaries String? // Other figures they knew/worked with
-  movements     String?  // Political/cultural movements they were part of
-  quotes        Json?    // Famous quotes attributed to them
-
-  city cities @relation(fields: [city_id], references: [id])
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  city_id          String   @db.Uuid
+  name             String
+  slug             String
+  bio              String?
+  birth_year       Int?
+  death_year       Int?
+  portrait_url     String?
+  is_published     Boolean  @default(true)
+  created_at       DateTime @default(now())
+  birth_place      String?
+  category         String?
+  contemporaries   String?
+  death_place      String?
+  famous_works     String?
+  full_name        String?
+  legacy           String?
+  lived_addresses  Json?
+  monuments        Json?
+  movements        String?
+  quotes           Json?
+  worked_addresses Json?
+  city             cities   @relation(fields: [city_id], references: [id])
 
   @@unique([city_id, slug])
 }
 
 model media {
-  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  bucket    String?  @default("public")
-  path      String
-  alt       String?
-  place_id  String?  @db.Uuid
-  city_id   String?  @db.Uuid
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  bucket     String?  @default("public")
+  path       String
+  alt        String?
+  place_id   String?  @db.Uuid
+  city_id    String?  @db.Uuid
   created_at DateTime @default(now())
-
-  place places? @relation(fields: [place_id], references: [id])
-  city  cities? @relation(fields: [city_id], references: [id])
+  city       cities?  @relation(fields: [city_id], references: [id])
+  place      places?  @relation(fields: [place_id], references: [id])
 }
 
 model business_plans {
-  id                String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  code              String  @unique
+  id                String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code              String          @unique
   name              String
   price_month_cents Int
   features          Json
@@ -238,15 +201,14 @@ model business_plans {
 }
 
 model subscriptions {
-  id                  String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  owner_id            String   // User.id
-  plan_id             String   @db.Uuid // business_plans.id
-  status              String   @default("active")
-  current_period_start DateTime @default(now())
-  current_period_end   DateTime @default(dbgenerated("(now() + interval '30 days')::timestamp"))
-
-  owner User        @relation("UserSubscriptions", fields: [owner_id], references: [id])
-  plan  business_plans  @relation(fields: [plan_id], references: [id])
+  id                   String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  owner_id             String
+  status               String         @default("active")
+  current_period_start DateTime       @default(now())
+  current_period_end   DateTime       @default(dbgenerated("((now() + '30 days'::interval))::timestamp without time zone"))
+  plan_id              String         @db.Uuid
+  owner                User           @relation("UserSubscriptions", fields: [owner_id], references: [id])
+  plan                 business_plans @relation(fields: [plan_id], references: [id])
 }
 
 model place_views {
@@ -254,8 +216,7 @@ model place_views {
   place_id    String   @db.Uuid
   occurred_at DateTime @default(now())
   user_id     String?
-
-  place places @relation(fields: [place_id], references: [id])
+  place       places   @relation(fields: [place_id], references: [id])
 }
 
 model reviews {
@@ -263,42 +224,59 @@ model reviews {
   place_id    String   @db.Uuid
   user_id     String?
   author_name String
-  rating      Int      // 1-5 stars
+  rating      Int
   comment     String?
   created_at  DateTime @default(now())
   is_verified Boolean  @default(false)
-
-  place places @relation(fields: [place_id], references: [id])
-  user  User?  @relation("UserReviews", fields: [user_id], references: [id])
+  place       places   @relation(fields: [place_id], references: [id])
+  user        User?    @relation("UserReviews", fields: [user_id], references: [id])
 }
 
 model streets {
   id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   city_id      String   @db.Uuid
   name         String
-  named_after  String?  // Who it's named after
-  story        String?  // The story behind the name
+  named_after  String?
+  story        String?
   lat          Float?
   lng          Float?
   image_url    String?
   is_published Boolean  @default(true)
   created_at   DateTime @default(now())
-
-  city cities @relation(fields: [city_id], references: [id])
+  city         cities   @relation(fields: [city_id], references: [id])
 }
 
 model historical_events {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  city_id     String   @db.Uuid
-  title       String
-  description String
-  date        DateTime?
-  year        Int?
-  location    String?
-  image_url   String?
-  importance  String   // national, regional, local
-  is_published Boolean @default(true)
-  created_at  DateTime @default(now())
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  city_id      String    @db.Uuid
+  title        String
+  description  String
+  date         DateTime?
+  year         Int?
+  location     String?
+  image_url    String?
+  importance   String
+  is_published Boolean   @default(true)
+  created_at   DateTime  @default(now())
+  city         cities    @relation(fields: [city_id], references: [id])
+}
 
-  city cities @relation(fields: [city_id], references: [id])
+enum place_kind {
+  restaurant
+  hotel
+  beach
+  landmark
+  shop
+  tour
+  activity
+  event
+}
+
+enum activity_type {
+  cultural
+  outdoor
+  nightlife
+  sports
+  family
+  spiritual
 }
