@@ -29,7 +29,7 @@ const landmarksData = [
         historical_significance: 'UNESCO World Heritage Site. Built 1805-1820 as symbol of Haitian independence and resistance.',
         unesco_site: true,
         is_published: true,
-        kind: 'landmark'
+        kind: 'landmark' as const
       }
     ]
   },
@@ -59,7 +59,7 @@ const landmarksData = [
         historical_significance: 'Symbol of Haitian sovereignty. Destroyed in 2010 earthquake, now preserved as historic monument.',
         unesco_site: false,
         is_published: true,
-        kind: 'landmark'
+        kind: 'landmark' as const
       },
       {
         name: 'Musée du Panthéon National Haïtien',
@@ -84,7 +84,7 @@ const landmarksData = [
         historical_significance: 'Houses artifacts from Haitian independence, including personal items of Toussaint Louverture and Jean-Jacques Dessalines.',
         unesco_site: false,
         is_published: true,
-        kind: 'landmark'
+        kind: 'landmark' as const
       }
     ]
   },
@@ -114,7 +114,7 @@ const landmarksData = [
         historical_significance: 'Best-preserved colonial architecture in Haiti. Historic port city with Victorian ironwork buildings.',
         unesco_site: false,
         is_published: true,
-        kind: 'landmark'
+        kind: 'landmark' as const
       }
     ]
   }

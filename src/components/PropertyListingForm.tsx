@@ -7,7 +7,7 @@ interface PropertyListingFormProps {
   citySlug: string;
 }
 
-export default function PropertyListingForm({ slug, citySlug }: PropertyListingFormProps) {
+export default function PropertyListingForm({ }: PropertyListingFormProps) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",
@@ -86,7 +86,7 @@ export default function PropertyListingForm({ slug, citySlug }: PropertyListingF
             📧 Check your email for a confirmation with your listing details
           </p>
           <p className="text-sm text-haiti-teal">
-            📞 We'll call you at {formData.phone} if we need additional information
+            📞 We&apos;ll call you at {formData.phone} if we need additional information
           </p>
         </div>
         <div className="mt-8">

@@ -13,7 +13,7 @@ interface RentalGalleryProps {
   rentalId: string;
   rentalName: string;
   initialPhotos: Photo[];
-  userSession?: any;
+  userSession?: unknown;
 }
 
 export default function RentalGallery({ rentalId, rentalName, initialPhotos, userSession }: RentalGalleryProps) {
@@ -66,7 +66,7 @@ export default function RentalGallery({ rentalId, rentalName, initialPhotos, use
       <div className="card">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-haiti-navy dark:text-haiti-turquoise">Photo Gallery</h2>
-          {session && (
+          {!!(session && typeof session === 'object' && session !== null) && (
             <button 
               onClick={() => setShowUploadModal(true)}
               className="bg-haiti-turquoise text-white px-4 py-2 rounded-lg hover:bg-haiti-turquoise/80 transition-colors text-sm font-medium"

@@ -192,7 +192,7 @@ export default async function RestaurantsPage({ params }: { params: Promise<{ sl
           <div className="card text-center py-12">
             <div className="text-6xl mb-4">🍽️</div>
             <h3 className="text-xl font-bold text-haiti-navy dark:text-haiti-turquoise mb-2">No Restaurants Yet</h3>
-            <p className="sub">We're working on adding dining options for {city.name}. Check back soon!</p>
+            <p className="sub">We&apos;re working on adding dining options for {city.name}. Check back soon!</p>
           </div>
         )}
       </section>

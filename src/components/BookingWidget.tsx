@@ -157,7 +157,7 @@ export default function BookingWidget({ rental }: BookingWidgetProps) {
           </button>
 
           {/* Pricing Breakdown */}
-          {totals.nights > 0 && (
+          {totals !== 0 && totals.nights > 0 && (
             <div className="space-y-2 pt-4 border-t border-gray-200 dark:border-gray-700">
               <div className="flex justify-between text-sm">
                 <span>{formatCurrency(pricePerNight)} × {totals.nights} night{totals.nights > 1 ? 's' : ''}</span>
@@ -179,7 +179,7 @@ export default function BookingWidget({ rental }: BookingWidgetProps) {
           )}
 
           <p className="text-xs text-center sub">
-            You won't be charged yet
+            You won&apos;t be charged yet
           </p>
         </div>
 
@@ -221,7 +221,7 @@ export default function BookingWidget({ rental }: BookingWidgetProps) {
                   <p><strong>Check-in:</strong> {new Date(checkIn).toLocaleDateString()}</p>
                   <p><strong>Check-out:</strong> {new Date(checkOut).toLocaleDateString()}</p>
                   <p><strong>Guests:</strong> {guests}</p>
-                  <p><strong>Total:</strong> {formatCurrency(totals.total)}</p>
+                  <p><strong>Total:</strong> {totals !== 0 ? formatCurrency(totals.total) : '$0'}</p>
                 </div>
               </div>
 
@@ -235,7 +235,7 @@ export default function BookingWidget({ rental }: BookingWidgetProps) {
               </div>
               
               <p className="text-xs sub">
-                Your booking request will be sent to the property owner. You'll receive a response within 24 hours.
+                Your booking request will be sent to the property owner. You&apos;ll receive a response within 24 hours.
               </p>
             </div>
             

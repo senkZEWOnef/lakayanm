@@ -164,7 +164,7 @@ export default async function RentalPage({ params }: { params: Promise<{ slug: s
               )}
               
               <div>
-                <h3 className="font-semibold mb-2">What's Nearby</h3>
+                <h3 className="font-semibold mb-2">What&apos;s Nearby</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
                   <div className="flex items-center gap-2">
                     <span>🏛️</span>
@@ -329,8 +329,8 @@ export default async function RentalPage({ params }: { params: Promise<{ slug: s
               <div className="ml-auto text-haiti-amber">⭐⭐⭐⭐⭐</div>
             </div>
             <p className="text-sm">
-              "Amazing stay! The property was exactly as described and the location was perfect. 
-              Our host was very responsive and helpful. Highly recommend!"
+              &quot;Amazing stay! The property was exactly as described and the location was perfect. 
+              Our host was very responsive and helpful. Highly recommend!&quot;
             </p>
           </div>
           
@@ -346,8 +346,8 @@ export default async function RentalPage({ params }: { params: Promise<{ slug: s
               <div className="ml-auto text-haiti-amber">⭐⭐⭐⭐⭐</div>
             </div>
             <p className="text-sm">
-              "Great place to stay in Cap-Haïtien. Clean, comfortable, and great value. 
-              Walking distance to many attractions. Will definitely book again!"
+              &quot;Great place to stay in Cap-Haïtien. Clean, comfortable, and great value. 
+              Walking distance to many attractions. Will definitely book again!&quot;
             </p>
           </div>
         </div>

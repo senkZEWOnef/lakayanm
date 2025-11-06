@@ -63,7 +63,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   // Group places by category for filtering
   const restaurants = places.filter(p => p.kind === 'restaurant');
   const hotels = places.filter(p => p.kind === 'hotel');
-  const shops = places.filter(p => p.kind === 'shop');
+  // const shops = places.filter(p => p.kind === 'shop');
   const landmarks = places.filter(p => p.kind === 'landmark');
   const beaches = places.filter(p => p.kind === 'beach');
   const tours = places.filter(p => p.kind === 'tour');
@@ -71,8 +71,8 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   const rentals = hotels; // Hotels serve as vacation rentals
 
   // Calculate city stats
-  const totalPlaces = places.length;
-  const unescoSites = places.filter(p => p.unesco_site).length;
+  // const totalPlaces = places.length;
+  // const unescoSites = places.filter(p => p.unesco_site).length;
 
   return (
     <div className="space-y-12">
@@ -95,23 +95,6 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           <p className="text-xl text-haiti-turquoise font-medium mb-2">{dept.name} Department</p>
           {city.summary && <p className="text-lg max-w-2xl mx-auto leading-relaxed mb-6">{city.summary}</p>}
           
-          {/* Quick Stats */}
-          <div className="flex justify-center gap-6 mt-6 text-sm">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-              <div className="font-bold text-haiti-turquoise">{totalPlaces}</div>
-              <div>Places</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-              <div className="font-bold text-haiti-turquoise">{figures.length}</div>
-              <div>Notable Figures</div>
-            </div>
-            {unescoSites > 0 && (
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-                <div className="font-bold text-haiti-turquoise">{unescoSites}</div>
-                <div>UNESCO Sites</div>
-              </div>
-            )}
-          </div>
         </div>
       </div>
 
@@ -237,7 +220,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
               built on sugar and coffee plantations.
             </p>
             <p>
-              Today, visitors can explore remnants of this colonial past through the city's architecture, 
+              Today, visitors can explore remnants of this colonial past through the city&apos;s architecture, 
               museums, and historic sites that tell the story of both the colonial era and the Haitian Revolution.
             </p>
           </div>
@@ -247,11 +230,11 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
             <p className="mb-4">
               Cap-Haïtien played a pivotal role in the Haitian Revolution (1791-1804), the only successful slave revolt 
               in history. The city was home to many key figures of the revolution and witnessed crucial battles that 
-              led to Haiti's independence.
+              led to Haiti&apos;s independence.
             </p>
             <p>
               The nearby Citadelle Laferrière and Sans-Souci Palace, built by King Henri Christophe, stand as 
-              monuments to Haiti's triumph over slavery and colonialism.
+              monuments to Haiti&apos;s triumph over slavery and colonialism.
             </p>
           </div>
           
@@ -551,7 +534,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
             <div className="text-6xl mb-4">🏠</div>
             <h3 className="text-xl font-bold text-haiti-navy dark:text-haiti-turquoise mb-4">Coming Soon!</h3>
             <p className="sub max-w-2xl mx-auto">
-              We're working on bringing you the best vacation rental options in {city.name}. 
+              We&apos;re working on bringing you the best vacation rental options in {city.name}. 
               From cozy guesthouses to luxury villas, find your perfect home away from home.
             </p>
             <div className="mt-6">

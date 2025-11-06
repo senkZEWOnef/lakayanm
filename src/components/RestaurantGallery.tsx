@@ -13,7 +13,7 @@ interface RestaurantGalleryProps {
   restaurantId: string;
   restaurantName: string;
   initialPhotos: Photo[];
-  userSession?: any;
+  userSession?: unknown;
 }
 
 export default function RestaurantGallery({ restaurantId, restaurantName, initialPhotos, userSession }: RestaurantGalleryProps) {
@@ -64,7 +64,7 @@ export default function RestaurantGallery({ restaurantId, restaurantName, initia
     <div className="card">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-haiti-navy dark:text-haiti-turquoise">Photo Gallery</h2>
-        {session && (
+        {!!(session && typeof session === 'object' && session !== null) && (
           <button 
             onClick={() => setShowUploadModal(true)}
             className="bg-brand text-white px-4 py-2 rounded-lg hover:bg-brand/80 transition-colors text-sm font-medium"

@@ -33,7 +33,7 @@ export default function RentalFilters({ rentals }: RentalFiltersProps) {
   const [sortBy, setSortBy] = useState(searchParams.get("sort") || "featured");
   
   const filteredRentals = useMemo(() => {
-    let filtered = rentals.filter(rental => {
+    const filtered = rentals.filter(rental => {
       // Search filter
       if (searchTerm && !rental.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
           !rental.description?.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -82,7 +82,7 @@ export default function RentalFilters({ rentals }: RentalFiltersProps) {
     }
 
     return filtered;
-  }, [rentals, searchTerm, priceFilter, stayDuration, amenityFilter, featuredOnly, sortBy]);
+  }, [rentals, searchTerm, priceFilter, featuredOnly, sortBy]);
 
   const updateURL = () => {
     const params = new URLSearchParams();

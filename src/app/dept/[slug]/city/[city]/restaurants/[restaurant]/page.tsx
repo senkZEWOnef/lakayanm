@@ -116,20 +116,22 @@ export default async function RestaurantPage({ params }: { params: Promise<{ slu
             </div>
           )}
 
-          {/* Menu & Specialties */}
-          {(restaurant.menu_highlights || restaurant.specialties) && (
+          {/* Menu & Items */}
+          {(restaurant.menu_items || restaurant.menu_url) && (
             <div className="card">
-              <h2 className="text-2xl font-bold text-haiti-navy dark:text-haiti-turquoise mb-4">Menu & Specialties</h2>
-              {restaurant.menu_highlights && (
+              <h2 className="text-2xl font-bold text-haiti-navy dark:text-haiti-turquoise mb-4">Menu & Items</h2>
+              {restaurant.menu_items && (
                 <div className="mb-4">
-                  <h3 className="font-bold text-lg mb-2">Menu Highlights</h3>
-                  <p className="leading-relaxed">{restaurant.menu_highlights}</p>
+                  <h3 className="font-bold text-lg mb-2">Menu Items</h3>
+                  <p className="leading-relaxed">{typeof restaurant.menu_items === 'string' ? restaurant.menu_items : JSON.stringify(restaurant.menu_items)}</p>
                 </div>
               )}
-              {restaurant.specialties && (
+              {restaurant.menu_url && (
                 <div>
-                  <h3 className="font-bold text-lg mb-2">House Specialties</h3>
-                  <p className="leading-relaxed">{restaurant.specialties}</p>
+                  <h3 className="font-bold text-lg mb-2">Full Menu</h3>
+                  <a href={restaurant.menu_url} target="_blank" rel="noopener noreferrer" className="text-brand hover:text-brand-dark">
+                    View Complete Menu →
+                  </a>
                 </div>
               )}
             </div>
@@ -181,21 +183,11 @@ export default async function RestaurantPage({ params }: { params: Promise<{ slu
                   </div>
                 </div>
               )}
-              
-              {restaurant.cuisine_type && (
-                <div className="flex items-start gap-3">
-                  <span className="text-haiti-coral mt-1">🍽️</span>
-                  <div>
-                    <p className="font-medium text-sm">Cuisine</p>
-                    <p className="text-sm sub">{restaurant.cuisine_type}</p>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
 
           {/* Hours & Availability */}
-          {(restaurant.opening_hours || restaurant.delivery_available || restaurant.takeout_available) && (
+          {restaurant.opening_hours && (
             <div className="card">
               <h3 className="text-xl font-bold text-haiti-navy dark:text-haiti-turquoise mb-4">Hours & Service</h3>
               <div className="space-y-3">
@@ -204,22 +196,8 @@ export default async function RestaurantPage({ params }: { params: Promise<{ slu
                     <span className="text-haiti-coral mt-1">⏰</span>
                     <div>
                       <p className="font-medium text-sm">Hours</p>
-                      <p className="text-sm sub">{restaurant.opening_hours}</p>
+                      <p className="text-sm sub">{typeof restaurant.opening_hours === 'string' ? restaurant.opening_hours : JSON.stringify(restaurant.opening_hours)}</p>
                     </div>
-                  </div>
-                )}
-                
-                {restaurant.delivery_available && (
-                  <div className="flex items-center gap-3">
-                    <span className="text-haiti-teal">🚚</span>
-                    <p className="text-sm font-medium text-haiti-teal">Delivery Available</p>
-                  </div>
-                )}
-                
-                {restaurant.takeout_available && (
-                  <div className="flex items-center gap-3">
-                    <span className="text-haiti-sage">🥡</span>
-                    <p className="text-sm font-medium text-haiti-sage">Takeout Available</p>
                   </div>
                 )}
               </div>
