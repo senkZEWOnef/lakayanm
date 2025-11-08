@@ -6,6 +6,11 @@ export const prisma =
   globalForPrisma.prisma ??
   new PrismaClient({
     log: process.env.NODE_ENV === "development" ? ["query", "info", "warn", "error"] : ["error"],
+    datasources: {
+      db: {
+        url: process.env.DATABASE_URL,
+      },
+    },
   });
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
@@ -13,10 +18,24 @@ if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 // Database connection health check
 export async function checkDatabaseConnection(): Promise<boolean> {
   try {
-    await prisma.$queryRaw`SELECT 1`;
-    return true;
+    // Try to connect with a simple query and timeout
+    const result = await prisma.$queryRaw`SELECT 1 as test`;
+    
+    // Ensure we got a valid result
+    if (Array.isArray(result) && result.length > 0) {
+      return true;
+    }
+    return false;
   } catch (error) {
     console.error("Database connection failed:", error);
+    
+    // Try to disconnect and reconnect for next attempt
+    try {
+      await prisma.$disconnect();
+    } catch (disconnectError) {
+      console.error("Error disconnecting from database:", disconnectError);
+    }
+    
     return false;
   }
 }

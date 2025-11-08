@@ -98,111 +98,6 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         </div>
       </div>
 
-      {/* Enhanced Categories Grid */}
-      <section>
-        <div className="flex items-center gap-3 mb-8">
-          <h2 className="text-3xl font-bold text-haiti-navy dark:text-haiti-turquoise">🗺️ Explore {city.name}</h2>
-          <div className="h-px bg-gradient-to-r from-brand to-haiti-teal flex-1"></div>
-        </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Landmarks */}
-          {landmarks.length > 0 && (
-            <Link href={`/dept/${slug}/city/${citySlug}/landmarks`} className="card hover:shadow-xl transition-all duration-300 group cursor-pointer border-l-4 border-haiti-coral">
-              <div className="text-center">
-                <div className="text-5xl mb-3 group-hover:scale-110 transition-transform">🏛️</div>
-                <h3 className="text-lg font-bold text-haiti-navy dark:text-haiti-turquoise mb-1">Landmarks</h3>
-                <div className="text-xl font-bold text-haiti-coral">{landmarks.length}</div>
-                <p className="text-xs sub">Historic sites</p>
-              </div>
-            </Link>
-          )}
-
-          {/* Restaurants */}
-          {restaurants.length > 0 && (
-            <a href="#restaurants" className="card hover:shadow-xl transition-all duration-300 group cursor-pointer border-l-4 border-brand">
-              <div className="text-center">
-                <div className="text-5xl mb-3 group-hover:scale-110 transition-transform">🍽️</div>
-                <h3 className="text-lg font-bold text-haiti-navy dark:text-haiti-turquoise mb-1">Restaurants</h3>
-                <div className="text-xl font-bold text-brand">{restaurants.length}</div>
-                <p className="text-xs sub">Culinary experiences</p>
-              </div>
-            </a>
-          )}
-
-          {/* Hotels & Stays */}
-          {hotels.length > 0 && (
-            <a href="#hotels" className="card hover:shadow-xl transition-all duration-300 group cursor-pointer border-l-4 border-haiti-teal">
-              <div className="text-center">
-                <div className="text-5xl mb-3 group-hover:scale-110 transition-transform">🏨</div>
-                <h3 className="text-lg font-bold text-haiti-navy dark:text-haiti-turquoise mb-1">Hotels & Stays</h3>
-                <div className="text-xl font-bold text-haiti-teal">{hotels.length}</div>
-                <p className="text-xs sub">Accommodations</p>
-              </div>
-            </a>
-          )}
-
-          {/* Rentals */}
-          {rentals.length > 0 && (
-            <Link href={`/dept/${slug}/city/${citySlug}/rentals`} className="card hover:shadow-xl transition-all duration-300 group cursor-pointer border-l-4 border-haiti-turquoise">
-              <div className="text-center">
-                <div className="text-5xl mb-3 group-hover:scale-110 transition-transform">🏠</div>
-                <h3 className="text-lg font-bold text-haiti-navy dark:text-haiti-turquoise mb-1">Rentals</h3>
-                <div className="text-xl font-bold text-haiti-turquoise">{rentals.length}</div>
-                <p className="text-xs sub">Vacation homes</p>
-              </div>
-            </Link>
-          )}
-
-          {/* Gallery */}
-          {media.length > 0 && (
-            <a href="#gallery" className="card hover:shadow-xl transition-all duration-300 group cursor-pointer border-l-4 border-haiti-sage">
-              <div className="text-center">
-                <div className="text-5xl mb-3 group-hover:scale-110 transition-transform">📸</div>
-                <h3 className="text-lg font-bold text-haiti-navy dark:text-haiti-turquoise mb-1">Gallery</h3>
-                <div className="text-xl font-bold text-haiti-sage">{media.length}</div>
-                <p className="text-xs sub">Photo collection</p>
-              </div>
-            </a>
-          )}
-
-          {/* History */}
-          {(historicalEvents.length > 0 || figures.length > 0) && (
-            <a href="#history" className="card hover:shadow-xl transition-all duration-300 group cursor-pointer border-l-4 border-haiti-amber">
-              <div className="text-center">
-                <div className="text-5xl mb-3 group-hover:scale-110 transition-transform">📜</div>
-                <h3 className="text-lg font-bold text-haiti-navy dark:text-haiti-turquoise mb-1">History</h3>
-                <div className="text-xl font-bold text-haiti-amber">{historicalEvents.length + figures.length}</div>
-                <p className="text-xs sub">Stories & people</p>
-              </div>
-            </a>
-          )}
-
-          {/* Beaches */}
-          {beaches.length > 0 && (
-            <a href="#beaches" className="card hover:shadow-xl transition-all duration-300 group cursor-pointer border-l-4 border-haiti-turquoise">
-              <div className="text-center">
-                <div className="text-5xl mb-3 group-hover:scale-110 transition-transform">🏖️</div>
-                <h3 className="text-lg font-bold text-haiti-navy dark:text-haiti-turquoise mb-1">Beaches</h3>
-                <div className="text-xl font-bold text-haiti-turquoise">{beaches.length}</div>
-                <p className="text-xs sub">Coastal paradise</p>
-              </div>
-            </a>
-          )}
-
-          {/* Tours & Activities */}
-          {(tours.length > 0 || activities.length > 0) && (
-            <a href="#activities" className="card hover:shadow-xl transition-all duration-300 group cursor-pointer border-l-4 border-haiti-amber">
-              <div className="text-center">
-                <div className="text-5xl mb-3 group-hover:scale-110 transition-transform">🎯</div>
-                <h3 className="text-lg font-bold text-haiti-navy dark:text-haiti-turquoise mb-1">Activities</h3>
-                <div className="text-xl font-bold text-haiti-amber">{tours.length + activities.length}</div>
-                <p className="text-xs sub">Tours & experiences</p>
-              </div>
-            </a>
-          )}
-        </div>
-      </section>
 
       {/* History & Culture Section */}
       <section id="history">
@@ -329,7 +224,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 href={`/dept/${slug}/city/${citySlug}/landmarks`}
                 className="inline-flex items-center gap-2 bg-haiti-coral text-white px-6 py-3 rounded-lg hover:bg-haiti-coral/80 transition-colors font-medium"
               >
-                See All {landmarks.length} Landmarks →
+                See All →
               </Link>
             </div>
           )}
@@ -340,7 +235,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 href={`/dept/${slug}/city/${citySlug}/landmarks`}
                 className="inline-flex items-center gap-2 border-2 border-haiti-coral text-haiti-coral px-6 py-3 rounded-lg hover:bg-haiti-coral hover:text-white transition-colors font-medium"
               >
-                View Landmark Details →
+                See All →
               </Link>
             </div>
           )}

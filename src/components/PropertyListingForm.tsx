@@ -2,12 +2,7 @@
 
 import { useState } from "react";
 
-interface PropertyListingFormProps {
-  slug: string;
-  citySlug: string;
-}
-
-export default function PropertyListingForm({ }: PropertyListingFormProps) {
+export default function PropertyListingForm() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",

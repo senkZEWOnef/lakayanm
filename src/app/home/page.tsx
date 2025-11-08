@@ -250,7 +250,7 @@ export default async function HomePage() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          <Link href="/stays/hotels" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
+          <Link href="/rentals?type=hotel" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
             <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
             <div className="text-4xl mb-4">🏨</div>
             <h3 className="font-semibold text-xl mb-3 text-amber-100 group-hover:text-amber-200 transition-colors duration-300">Hotels</h3>
@@ -258,7 +258,7 @@ export default async function HomePage() {
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
           </Link>
 
-          <Link href="/stays/airbnb" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
+          <Link href="/rentals?type=shop" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
             <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
             <div className="text-4xl mb-4">🏠</div>
             <h3 className="font-semibold text-xl mb-3 text-amber-100 group-hover:text-amber-200 transition-colors duration-300">Houses</h3>
@@ -266,7 +266,7 @@ export default async function HomePage() {
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-300 group-hover:w-3/4 transition-all duration-500"></div>
           </Link>
 
-          <Link href="/stays/rentals" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
+          <Link href="/rentals" className="relative group bg-slate-800/90 backdrop-blur-sm border border-amber-200/50 rounded-2xl p-6 text-center hover:border-amber-400/60 hover:bg-slate-700/90 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-amber-400/10">
             <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-amber-400/40 group-hover:border-amber-400/60 transition-colors duration-300"></div>
             <div className="text-4xl mb-4">🔑</div>
             <h3 className="font-semibold text-xl mb-3 text-amber-100 group-hover:text-amber-200 transition-colors duration-300">Rentals</h3>
