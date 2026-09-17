@@ -28,14 +28,11 @@ export default function RootLayout({
               Lakaya&apos;m
             </Link>
             <div className="flex gap-2 md:gap-3">
-              <Link className="btn hover:border-amber-400/50 hover:bg-amber-500/20 text-white text-sm md:text-base" href="/map">
-                Map
+              <Link className="btn hover:border-amber-400/50 hover:bg-amber-500/20 text-white text-sm md:text-base" href="/discover">
+                Discover
               </Link>
               <Link className="btn hover:border-amber-400/50 hover:bg-amber-500/20 text-white text-sm md:text-base" href="/about">
                 About
-              </Link>
-              <Link className="btn hover:border-amber-400/50 hover:bg-amber-500/20 text-white text-sm md:text-base" href="/auth/login">
-                Log In
               </Link>
             </div>
           </nav>
@@ -65,13 +62,27 @@ export default function RootLayout({
 
               {/* Navigation Links */}
               <div className="flex justify-center">
-                <nav className="flex gap-8 relative">
+                <nav className="flex gap-6 relative">
                   <div className="absolute -top-2 -bottom-2 left-1/2 transform -translate-x-1/2 w-px bg-gradient-to-b from-transparent via-amber-400/30 to-transparent"></div>
                   <Link 
-                    href="/departments" 
+                    href="/discover" 
                     className="text-white/80 hover:text-amber-200 transition-colors duration-300 text-sm font-medium relative group"
                   >
-                    Departments
+                    Discover
+                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
+                  </Link>
+                  <Link 
+                    href="/cities/cap-haitien" 
+                    className="text-white/80 hover:text-amber-200 transition-colors duration-300 text-sm font-medium relative group"
+                  >
+                    Cap-Haïtien
+                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
+                  </Link>
+                  <Link 
+                    href="/cities/jacmel" 
+                    className="text-white/80 hover:text-amber-200 transition-colors duration-300 text-sm font-medium relative group"
+                  >
+                    Jacmel
                     <span className="absolute -bottom-1 left-0 w-0 h-px bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
                   </Link>
                   <Link 
@@ -79,13 +90,6 @@ export default function RootLayout({
                     className="text-white/80 hover:text-amber-200 transition-colors duration-300 text-sm font-medium relative group"
                   >
                     About
-                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
-                  </Link>
-                  <Link 
-                    href="/home" 
-                    className="text-white/80 hover:text-amber-200 transition-colors duration-300 text-sm font-medium relative group"
-                  >
-                    Home
                     <span className="absolute -bottom-1 left-0 w-0 h-px bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
                   </Link>
                 </nav>
