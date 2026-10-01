@@ -48,7 +48,7 @@ export default async function RentalsPage({ params }: { params: Promise<{ slug: 
         </div>
         <Link 
           href={`/dept/${slug}/city/${citySlug}/rentals/list-property`} 
-          className="bg-haiti-turquoise text-white px-6 py-3 rounded-lg hover:bg-haiti-turquoise/80 transition-colors font-medium"
+          className="bg-gradient-to-r from-haiti-turquoise to-haiti-emerald text-white px-6 py-3 rounded-lg hover:shadow-lg hover:shadow-haiti-turquoise/30 transition-all duration-300 font-medium"
         >
           + List Your Property
         </Link>
@@ -139,7 +139,7 @@ export default async function RentalsPage({ params }: { params: Promise<{ slug: 
                   <div className="text-haiti-turquoise text-sm font-medium group-hover:text-haiti-turquoise/80 transition-colors">
                     View Property →
                   </div>
-                  <button className="bg-haiti-turquoise text-white text-xs px-3 py-1 rounded-lg hover:bg-haiti-turquoise/80 transition-colors">
+                  <button className="bg-gradient-to-r from-haiti-turquoise to-haiti-emerald text-white text-xs px-3 py-1 rounded-lg hover:shadow-md hover:shadow-haiti-turquoise/30 transition-all duration-300">
                     Book Now
                   </button>
                 </div>
@@ -217,7 +217,7 @@ export default async function RentalsPage({ params }: { params: Promise<{ slug: 
                   <div className="text-haiti-turquoise text-sm font-medium group-hover:text-haiti-turquoise/80 transition-colors">
                     View Property →
                   </div>
-                  <button className="bg-haiti-turquoise text-white text-xs px-3 py-1 rounded-lg hover:bg-haiti-turquoise/80 transition-colors">
+                  <button className="bg-gradient-to-r from-haiti-turquoise to-haiti-emerald text-white text-xs px-3 py-1 rounded-lg hover:shadow-md hover:shadow-haiti-turquoise/30 transition-all duration-300">
                     Book Now
                   </button>
                 </div>
@@ -231,7 +231,7 @@ export default async function RentalsPage({ params }: { params: Promise<{ slug: 
             <p className="sub mb-6">Be the first to list your property in {city.name}!</p>
             <Link 
               href={`/dept/${slug}/city/${citySlug}/rentals/list-property`} 
-              className="bg-haiti-turquoise text-white px-6 py-3 rounded-lg hover:bg-haiti-turquoise/80 transition-colors font-medium inline-block"
+              className="bg-gradient-to-r from-haiti-turquoise to-haiti-emerald text-white px-6 py-3 rounded-lg hover:shadow-lg hover:shadow-haiti-turquoise/30 transition-all duration-300 font-medium inline-block"
             >
               List Your Property
             </Link>
@@ -250,7 +250,7 @@ export default async function RentalsPage({ params }: { params: Promise<{ slug: 
         </p>
         <Link 
           href={`/dept/${slug}/city/${citySlug}/rentals/list-property`} 
-          className="bg-haiti-turquoise text-white px-8 py-4 rounded-lg hover:bg-haiti-turquoise/80 transition-colors font-medium text-lg"
+          className="bg-gradient-to-r from-haiti-turquoise to-haiti-emerald text-white px-8 py-4 rounded-lg hover:shadow-lg hover:shadow-haiti-turquoise/30 transition-all duration-300 font-medium text-lg"
         >
           List Your Property Today
         </Link>

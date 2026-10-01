@@ -9,8 +9,6 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-// Removed authentication and user models for simplified "Discover Haiti" approach
-
 model departments {
   id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   slug         String   @unique
@@ -20,6 +18,7 @@ model departments {
   is_published Boolean  @default(true)
   created_at   DateTime @default(now())
   cities       cities[]
+  trips        trips[]
 }
 
 model cities {
@@ -39,6 +38,7 @@ model cities {
   media             media[]
   places            places[]
   streets           streets[]
+  trip_cities       trip_cities[]
 
   @@unique([department_id, slug])
 }
@@ -51,26 +51,40 @@ model places {
   slug                    String
   description             String?
   address                 String?
+  phone                   String?
   website                 String?
+  order_url               String?
+  booking_url             String?
+  price_range             String?
   lat                     Float?
   lng                     Float?
   cover_url               String?
   is_published            Boolean        @default(true)
+  owner_id                String?
   created_at              DateTime       @default(now())
   activity_type           activity_type?
+  booking_phone           String?
+  event_date              DateTime?
+  event_end_date          DateTime?
   is_featured             Boolean        @default(false)
+  menu_items              Json?
+  menu_url                String?
   opening_hours           Json?
   accessibility           String?
   best_visiting_time      String?
   directions_text         String?
   entrance_fee            String?
+  gps_coordinates         String?
   guided_tours            Boolean        @default(false)
   historical_significance String?
   parking_info            String?
   transport_info          Json?
   unesco_site             Boolean        @default(false)
   media                   media[]
+  place_views             place_views[]
   city                    cities         @relation(fields: [city_id], references: [id])
+  users                   users?         @relation(fields: [owner_id], references: [id])
+  reviews                 reviews[]
 
   @@unique([city_id, slug])
 }
@@ -115,10 +129,6 @@ model media {
   place      places?  @relation(fields: [place_id], references: [id])
 }
 
-// Removed business plans and subscriptions for simplified discovery-focused app
-
-// Removed reviews and place views for simplified discovery-focused app
-
 model streets {
   id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   city_id      String   @db.Uuid
@@ -148,12 +158,292 @@ model historical_events {
   city         cities    @relation(fields: [city_id], references: [id])
 }
 
+model trips {
+  id                     String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  department_id          String           @db.Uuid
+  slug                   String           @unique
+  title                  String
+  tagline                String?
+  summary                String?
+  category               String?
+  hero_url               String?
+  video_url              String?
+  duration_days          Int
+  group_min              Int              @default(1)
+  group_threshold        Int              @default(4)
+  price_individual_cents Int
+  price_group_cents      Int
+  deposit_cents          Int
+  currency               String           @default("usd")
+  includes               Json?
+  excludes               Json?
+  is_published           Boolean          @default(true)
+  is_featured            Boolean          @default(false)
+  created_at             DateTime         @default(now())
+  cities                 trip_cities[]
+  days                   trip_days[]
+  reservations           reservations[]
+  assignments            trip_assignments[]
+  department             departments        @relation(fields: [department_id], references: [id])
+}
+
+model trip_days {
+  id          String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  trip_id     String  @db.Uuid
+  day_number  Int
+  title       String
+  description String
+  image_url   String?
+  trip        trips   @relation(fields: [trip_id], references: [id])
+
+  @@unique([trip_id, day_number])
+}
+
+model trip_cities {
+  trip_id String @db.Uuid
+  city_id String @db.Uuid
+  city    cities @relation(fields: [city_id], references: [id])
+  trip    trips  @relation(fields: [trip_id], references: [id])
+
+  @@id([trip_id, city_id])
+}
+
+model reservations {
+  id                          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  trip_id                     String     @db.Uuid
+  name                        String
+  email                       String
+  phone                       String?
+  traveler_count               Int        @default(1)
+  preferred_start_date        DateTime?
+  flexible_dates              Boolean    @default(true)
+  message                     String?
+  status                      String     @default("new")
+  quoted_total_cents          Int?
+  discount_code               String?
+  deposit_due_cents           Int?
+  amount_paid_cents           Int        @default(0)
+  payment_status              String     @default("unpaid")
+  stripe_customer_id          String?
+  stripe_checkout_session_id  String?
+  assigned_employee_id        String?    @db.Uuid
+  created_at                  DateTime   @default(now())
+  trip                        trips      @relation(fields: [trip_id], references: [id])
+  assigned_employee           employees? @relation(fields: [assigned_employee_id], references: [id])
+  payments                    payments[]
+}
+
+model employees {
+  id           String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name         String
+  role         String
+  phone        String?
+  email        String?
+  photo_url    String?
+  is_active    Boolean             @default(true)
+  user_id      String?             @unique
+  created_at   DateTime            @default(now())
+  user         users?              @relation(fields: [user_id], references: [id])
+  assignments  trip_assignments[]
+  reservations reservations[]
+}
+
+model trip_assignments {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  trip_id     String    @db.Uuid
+  employee_id String    @db.Uuid
+  role        String?
+  created_at  DateTime  @default(now())
+  trip        trips     @relation(fields: [trip_id], references: [id])
+  employee    employees @relation(fields: [employee_id], references: [id])
+
+  @@unique([trip_id, employee_id])
+}
+
+model payments {
+  id                       String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  reservation_id           String       @db.Uuid
+  amount_cents             Int
+  currency                 String       @default("usd")
+  kind                     String
+  method                   String       @default("stripe") // "stripe" | "paypal" | "moncash" | "athmovil"
+  stripe_payment_intent_id String?
+  moncash_order_id         String?
+  moncash_transaction_id   String?
+  moncash_amount_htg       Float?
+  paypal_order_id          String?
+  athmovil_reference       String?
+  status                   String
+  created_at               DateTime     @default(now())
+  reservation              reservations @relation(fields: [reservation_id], references: [id])
+}
+
+model settings {
+  key        String   @id
+  value      String
+  updated_at DateTime @updatedAt
+}
+
+model discount_codes {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code       String    @unique
+  kind       String
+  value      Int
+  label      String?
+  max_uses   Int?
+  use_count  Int       @default(0)
+  expires_at DateTime?
+  is_active  Boolean   @default(true)
+  created_at DateTime  @default(now())
+}
+
+model site_images {
+  key        String   @id
+  url        String
+  updated_at DateTime @updatedAt
+}
+
+model accounts {
+  id                  String  @id
+  user_id             String
+  type                String
+  provider            String
+  provider_account_id String
+  refresh_token       String?
+  access_token        String?
+  expires_at          Int?
+  token_type          String?
+  scope               String?
+  id_token            String?
+  session_state       String?
+  users               users   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([provider, provider_account_id])
+}
+
+model business_plans {
+  id                String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code              String          @unique
+  name              String
+  price_month_cents Int
+  features          Json
+  subscriptions     subscriptions[]
+}
+
+model place_views {
+  id          BigInt   @id @default(autoincrement())
+  place_id    String   @db.Uuid
+  occurred_at DateTime @default(now())
+  user_id     String?
+  places      places   @relation(fields: [place_id], references: [id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model profiles {
+  id         String   @id
+  full_name  String?
+  role       String   @default("user")
+  created_at DateTime @default(now())
+}
+
+model reviews {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  place_id    String   @db.Uuid
+  user_id     String?
+  author_name String
+  rating      Int
+  comment     String?
+  created_at  DateTime @default(now())
+  is_verified Boolean  @default(false)
+  places      places   @relation(fields: [place_id], references: [id])
+  users       users?   @relation(fields: [user_id], references: [id])
+}
+
+model sessions {
+  id            String   @id
+  session_token String   @unique
+  user_id       String
+  expires       DateTime
+  users         users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model subscriptions {
+  id                   String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  owner_id             String
+  status               String         @default("active")
+  current_period_start DateTime       @default(now())
+  current_period_end   DateTime       @default(dbgenerated("((now() + '30 days'::interval))::timestamp without time zone"))
+  plan_id              String         @db.Uuid
+  users                users          @relation(fields: [owner_id], references: [id])
+  business_plans       business_plans @relation(fields: [plan_id], references: [id])
+}
+
+model users {
+  id            String          @id
+  email         String          @unique
+  password      String
+  name          String?
+  role          String          @default("user")
+  emailVerified DateTime?
+  image         String?
+  created_at    DateTime        @default(now())
+  updated_at    DateTime
+  accounts      accounts[]
+  places        places[]
+  reviews       reviews[]
+  sessions      sessions[]
+  subscriptions subscriptions[]
+  employee      employees?
+}
+
+model verificationtokens {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model gallery_items {
+  id            String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  media_type    gallery_media_type
+  url           String
+  thumbnail_url String?
+  caption       String?
+  location      String?
+  credit        String?
+  is_published  Boolean            @default(true)
+  is_featured   Boolean            @default(false)
+  created_at    DateTime           @default(now())
+}
+
+model access_codes {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code       String    @unique
+  label      String?
+  max_uses   Int?
+  use_count  Int       @default(0)
+  expires_at DateTime?
+  is_active  Boolean   @default(true)
+  created_at DateTime  @default(now())
+}
+
+enum gallery_media_type {
+  photo
+  video
+  youtube
+}
+
 enum place_kind {
   restaurant
+  hotel
   beach
   landmark
+  shop
+  tour
   activity
-  cultural_site
+  event
 }
 
 enum activity_type {

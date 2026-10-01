@@ -25,7 +25,18 @@ module.exports = {
           emerald: "#059669",   // Nature/palm trees
           amber: "#f59e0b",     // Gold accents
           sky: "#0ea5e9",       // Sky elements
+          sage: "#7c9885",      // Mountains/nature (was referenced but undefined)
+          sand: "#f5eee5",      // Warm beach neutral, for light sections
+          sunset: "#fb7185",    // Caribbean sunset rose
         },
+      },
+      fontFamily: {
+        heading: ["Poppins", "sans-serif"],
+        body: ["Inter", "sans-serif"],
+      },
+      boxShadow: {
+        glow: "0 0 40px -8px rgba(6, 182, 212, 0.45)",
+        "glow-amber": "0 0 40px -8px rgba(245, 158, 11, 0.45)",
       },
       animation: {
         'fade-in': 'fadeIn 1s ease-in-out',

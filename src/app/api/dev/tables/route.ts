@@ -14,7 +14,7 @@ export async function GET() {
       { name: 'cities', query: () => prisma.cities.count() },
       { name: 'places', query: () => prisma.places.count() },
       { name: 'figures', query: () => prisma.figures.count() },
-      { name: 'users', query: () => prisma.user.count() },
+      { name: 'users', query: () => prisma.users.count() },
       { name: 'profiles', query: () => prisma.profiles.count() },
       { name: 'media', query: () => prisma.media.count() },
       { name: 'reviews', query: () => prisma.reviews.count() },

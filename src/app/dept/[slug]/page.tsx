@@ -8,7 +8,8 @@ export default async function DepartmentPage({ params }: { params: Promise<{ slu
   
   let dept = null;
   let cities = [];
-  
+  let trips: Awaited<ReturnType<typeof prisma.trips.findMany>> = [];
+
   try {
     dept = await prisma.departments.findUnique({ where: { slug } });
     if (!dept || !dept.is_published) return <div className="sub">Department not found.</div>;
@@ -16,6 +17,11 @@ export default async function DepartmentPage({ params }: { params: Promise<{ slu
     cities = await prisma.cities.findMany({
       where: { department_id: dept.id, is_published: true },
       orderBy: { name: "asc" },
+    });
+
+    trips = await prisma.trips.findMany({
+      where: { department_id: dept.id, is_published: true },
+      orderBy: { created_at: "asc" },
     });
   } catch (error) {
     console.error('Database connection error:', error);
@@ -41,7 +47,7 @@ export default async function DepartmentPage({ params }: { params: Promise<{ slu
           sizes="100vw"
           priority
         />
-        <div className="absolute inset-0 bg-slate-800/60 dark:bg-slate-900/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60"></div>
       </div>
 
       <div className="relative z-10 space-y-8 md:space-y-12 px-4 md:px-6 py-8 md:py-12">
@@ -62,6 +68,33 @@ export default async function DepartmentPage({ params }: { params: Promise<{ slu
             )}
           </div>
         </div>
+
+        {/* Trips in this Department */}
+        {trips.length > 0 && (
+          <section>
+            <div className="flex items-center gap-3 mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-white">Trips in {dept.name}</h2>
+              <div className="h-px bg-gradient-to-r from-haiti-turquoise to-transparent flex-1"></div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              {trips.map((trip) => (
+                <Link
+                  key={trip.id}
+                  href={`/trips/${trip.slug}`}
+                  className="card hover:shadow-xl transition-all duration-300 group cursor-pointer border-l-4 border-haiti-turquoise"
+                >
+                  {trip.hero_url && (
+                    <div className="relative w-full h-32 md:h-40 mb-4 overflow-hidden rounded-xl">
+                      <Image src={trip.hero_url} alt={trip.title} fill className="object-cover group-hover:scale-105 transition-transform" />
+                    </div>
+                  )}
+                  <h3 className="font-semibold text-lg md:text-xl mb-1 text-haiti-navy dark:text-haiti-turquoise">{trip.title}</h3>
+                  {trip.tagline && <p className="text-sm sub">{trip.tagline}</p>}
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Department Map Section */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">

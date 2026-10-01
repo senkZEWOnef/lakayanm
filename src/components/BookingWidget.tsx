@@ -151,7 +151,7 @@ export default function BookingWidget({ rental }: BookingWidgetProps) {
           <button
             onClick={handleBooking}
             disabled={!checkIn || !checkOut}
-            className="w-full bg-haiti-turquoise text-white py-3 rounded-lg font-medium text-sm hover:bg-haiti-turquoise/80 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-haiti-turquoise to-haiti-emerald text-white py-3 rounded-lg font-medium text-sm hover:shadow-lg hover:shadow-haiti-turquoise/30 transition-all duration-300 disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed"
           >
             {rental.booking_url ? "Book Now" : "Request to Book"}
           </button>
@@ -251,7 +251,7 @@ export default function BookingWidget({ rental }: BookingWidgetProps) {
                   alert("Booking request sent! You'll receive a confirmation email shortly.");
                   setShowBookingModal(false);
                 }}
-                className="flex-1 bg-haiti-turquoise text-white px-4 py-2 rounded-lg hover:bg-haiti-turquoise/80 transition-colors font-medium"
+                className="flex-1 bg-gradient-to-r from-haiti-turquoise to-haiti-emerald text-white px-4 py-2 rounded-lg hover:shadow-lg hover:shadow-haiti-turquoise/30 transition-all duration-300 font-medium"
               >
                 Send Request
               </button>

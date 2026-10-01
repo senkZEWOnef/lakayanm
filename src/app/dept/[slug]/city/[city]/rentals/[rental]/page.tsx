@@ -207,7 +207,7 @@ export default async function RentalPage({ params }: { params: Promise<{ slug: s
               </div>
             </div>
             <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-              <button className="w-full bg-haiti-turquoise text-white py-2 rounded-lg hover:bg-haiti-turquoise/80 transition-colors text-sm font-medium">
+              <button className="w-full bg-gradient-to-r from-haiti-turquoise to-haiti-emerald text-white py-2 rounded-lg hover:shadow-lg hover:shadow-haiti-turquoise/30 transition-all duration-300 text-sm font-medium">
                 Contact Host
               </button>
             </div>

@@ -4,6 +4,12 @@
 
 :root {
   color-scheme: light dark;
+  /* The site's base background, everywhere a page doesn't supply its own photo/hero:
+     dark navy-to-teal base plus two soft color washes (cyan + amber) instead of a flat hex. */
+  --app-bg:
+    radial-gradient(circle at 12% -10%, rgba(6, 182, 212, 0.16), transparent 45%),
+    radial-gradient(circle at 90% 110%, rgba(245, 158, 11, 0.12), transparent 45%),
+    linear-gradient(160deg, #1e293b 0%, #0f172a 55%, #0c2b2b 100%);
 }
 
 * {
@@ -15,17 +21,32 @@
 html, body {
   height: 100%;
   width: 100%;
-  background: #1e293b;
+  background: var(--app-bg);
+  background-attachment: fixed;
   color: white;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Sharper display type for every heading, site-wide, with no per-page changes needed */
+h1, h2, h3, h4 {
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: -0.01em;
+}
+
 .container-lg {
   @apply max-w-6xl mx-auto px-4;
 }
 .card {
-  @apply rounded-2xl shadow-md border border-amber-200/50 dark:border-amber-400/20 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-6;
+  @apply rounded-2xl shadow-md hover:shadow-xl border border-amber-200/50 dark:border-amber-400/20 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-6 transition-shadow duration-300;
+}
+/* Warm sand surface for light-section variety, mirroring beach/sand tones */
+.card-light {
+  @apply rounded-2xl shadow-md border border-haiti-sand bg-haiti-sand text-slate-900 p-6;
+}
+.section-light {
+  @apply bg-haiti-sand text-slate-900;
 }
 .hero-title {
   @apply text-3xl md:text-5xl font-extrabold tracking-tight;
@@ -38,6 +59,21 @@ html, body {
 }
 .btn-primary {
   @apply bg-amber-500 text-white border-0 hover:bg-amber-600 hover:shadow-xl transition-all duration-300;
+}
+/* Same quiet, confident pill as the hero's button — solid fill, simple hover, no gradients/glow */
+.btn-brand {
+  @apply inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium text-white border-0 transition-colors duration-300;
+  background-color: theme('colors.haiti.turquoise');
+}
+.btn-brand:hover {
+  background-color: theme('colors.haiti.teal');
+}
+.btn-sunset {
+  @apply inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium text-white border-0 transition-colors duration-300;
+  background-color: theme('colors.haiti.amber');
+}
+.btn-sunset:hover {
+  background-color: theme('colors.brand.dark');
 }
 .grid-auto {
   @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5;
@@ -92,43 +128,45 @@ html, body {
   }
 }
 
-/* Force dark background on mobile devices */
+/* Keep the richer app background on mobile too — this used to force everything
+   back to a flat hex here, which quietly undid any color/gradient work above
+   on the majority of visits (most traffic is mobile). */
 @media (max-width: 768px) {
   html, body {
-    background-color: #1e293b !important;
-    background: #1e293b !important;
+    background: var(--app-bg) !important;
   }
-  
+
   /* Don't override main elements that contain background images */
   main:not(.relative) {
-    background-color: #1e293b !important;
+    background: var(--app-bg) !important;
   }
-  
+
   /* Only apply to elements without background images */
   .min-h-screen:not(.relative) {
-    background-color: #1e293b !important;
+    background: var(--app-bg) !important;
   }
-  
+
   header {
-    background-color: rgba(30, 41, 59, 0.95) !important;
-    background: rgba(30, 41, 59, 0.95) !important;
+    background-color: rgba(15, 23, 42, 0.95) !important;
+    background: rgba(15, 23, 42, 0.95) !important;
   }
-  
-  /* Override any white backgrounds on mobile */
-  .bg-white, 
-  .bg-white\/90, 
-  .bg-white\/80, 
-  .bg-white\/70, 
-  .bg-white\/60, 
+
+  /* Override any white backgrounds on mobile with a teal-tinted dark surface
+     instead of flat slate, so cards keep some color identity */
+  .bg-white,
+  .bg-white\/90,
+  .bg-white\/80,
+  .bg-white\/70,
+  .bg-white\/60,
   .bg-white\/50 {
-    background-color: rgba(30, 41, 59, 0.8) !important;
-    background: rgba(30, 41, 59, 0.8) !important;
+    background-color: rgba(15, 46, 46, 0.85) !important;
+    background: rgba(15, 46, 46, 0.85) !important;
   }
-  
+
   /* Fix dropdown and overlay backgrounds */
-  .backdrop-blur-sm,
-  .backdrop-blur {
-    background-color: rgba(30, 41, 59, 0.9) !important;
+  .backdrop-blur-sm:not(.card-light),
+  .backdrop-blur:not(.card-light) {
+    background-color: rgba(15, 46, 46, 0.85) !important;
   }
   
   /* Ensure background images work on mobile */

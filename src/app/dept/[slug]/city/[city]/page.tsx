@@ -49,7 +49,14 @@ async function getCityData(slug: string, citySlug: string) {
     take: 12,
   });
 
-  return { dept, city, places, figures, events, historicalEvents, streets, media };
+  // Trips that include this city
+  const tripLinks = await prisma.trip_cities.findMany({
+    where: { city_id: city.id },
+    include: { trip: true },
+  });
+  const trips = tripLinks.map((link) => link.trip).filter((trip) => trip.is_published);
+
+  return { dept, city, places, figures, events, historicalEvents, streets, media, trips };
 }
 
 export default async function CityPage({ params }: { params: Promise<{ slug: string; city: string }> }) {
@@ -58,7 +65,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   
   if (!data) return <div className="sub">City not found.</div>;
   
-  const { dept, city, places, figures, events, historicalEvents, streets, media } = data;
+  const { dept, city, places, figures, events, historicalEvents, streets, media, trips } = data;
 
   // Group places by category for filtering
   const restaurants = places.filter(p => p.kind === 'restaurant');
@@ -98,6 +105,37 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         </div>
       </div>
 
+      {/* Turn this into a trip */}
+      {trips.length > 0 && (
+        <section>
+          <div className="flex items-center gap-3 mb-6">
+            <h2 className="text-2xl font-bold text-haiti-navy dark:text-haiti-turquoise">✈️ Turn This Into a Trip</h2>
+            <div className="h-px bg-gradient-to-r from-haiti-turquoise to-transparent flex-1"></div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {trips.map((trip) => (
+              <Link
+                key={trip.id}
+                href={`/trips/${trip.slug}`}
+                className="card hover:shadow-xl transition-all duration-300 group cursor-pointer border-l-4 border-haiti-turquoise flex items-center gap-4"
+              >
+                {trip.hero_url && (
+                  <div className="relative w-20 h-20 shrink-0 overflow-hidden rounded-xl">
+                    <Image src={trip.hero_url} alt={trip.title} fill className="object-cover" />
+                  </div>
+                )}
+                <div>
+                  <h3 className="font-bold text-haiti-navy dark:text-haiti-turquoise">{trip.title}</h3>
+                  {trip.tagline && <p className="text-sm sub">{trip.tagline}</p>}
+                  <span className="text-haiti-turquoise text-sm font-medium group-hover:text-haiti-turquoise/80">
+                    See the itinerary & pricing →
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* History & Culture Section */}
       <section id="history">
@@ -248,7 +286,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           <div className="flex items-center gap-3 mb-8">
             <h2 className="text-3xl font-bold text-haiti-navy dark:text-haiti-turquoise">🍽️ Restaurants & Dining</h2>
             <div className="h-px bg-gradient-to-r from-brand to-haiti-teal flex-1"></div>
-            <Link href={`/dept/${slug}/city/${citySlug}/restaurants`} className="bg-brand text-white px-4 py-2 rounded-lg hover:bg-brand/80 transition-colors text-sm font-medium">
+            <Link href={`/dept/${slug}/city/${citySlug}/restaurants`} className="bg-gradient-to-r from-brand to-haiti-coral text-white px-4 py-2 rounded-lg hover:shadow-lg hover:shadow-brand/30 transition-all duration-300 text-sm font-medium">
               See All →
             </Link>
           </div>
@@ -363,7 +401,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           <div className="flex items-center gap-3 mb-8">
             <h2 className="text-3xl font-bold text-haiti-navy dark:text-haiti-turquoise">🏠 Vacation Rentals</h2>
             <div className="h-px bg-gradient-to-r from-haiti-turquoise to-haiti-teal flex-1"></div>
-            <Link href={`/dept/${slug}/city/${citySlug}/rentals`} className="bg-haiti-turquoise text-white px-4 py-2 rounded-lg hover:bg-haiti-turquoise/80 transition-colors text-sm font-medium">
+            <Link href={`/dept/${slug}/city/${citySlug}/rentals`} className="bg-gradient-to-r from-haiti-turquoise to-haiti-emerald text-white px-4 py-2 rounded-lg hover:shadow-lg hover:shadow-haiti-turquoise/30 transition-all duration-300 text-sm font-medium">
               See All →
             </Link>
           </div>
@@ -433,7 +471,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
               From cozy guesthouses to luxury villas, find your perfect home away from home.
             </p>
             <div className="mt-6">
-              <Link href={`/dept/${slug}/city/${citySlug}/rentals`} className="bg-haiti-turquoise text-white px-6 py-3 rounded-lg hover:bg-haiti-turquoise/80 transition-colors font-medium">
+              <Link href={`/dept/${slug}/city/${citySlug}/rentals`} className="bg-gradient-to-r from-haiti-turquoise to-haiti-emerald text-white px-6 py-3 rounded-lg hover:shadow-lg hover:shadow-haiti-turquoise/30 transition-all duration-300 font-medium">
                 List Your Property
               </Link>
             </div>

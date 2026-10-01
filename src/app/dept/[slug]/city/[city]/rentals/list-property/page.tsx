@@ -56,7 +56,7 @@ export default async function ListPropertyPage({ params }: { params: Promise<{ s
                 <li className="flex items-center gap-2"><span className="text-green-500">✓</span> 5% commission per booking</li>
               </ul>
             </div>
-            <div className="bg-haiti-turquoise text-white rounded-xl p-6 relative">
+            <div className="bg-gradient-to-br from-haiti-turquoise to-haiti-emerald text-white rounded-xl p-6 relative shadow-lg shadow-haiti-turquoise/20">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-haiti-coral text-white text-xs px-3 py-1 rounded-full">
                 Most Popular
               </div>
