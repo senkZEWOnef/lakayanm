@@ -3,8 +3,6 @@ import Image from "next/image";
 import { prisma } from "@/lib/db";
 import TripInquiryWidget from "@/components/TripInquiryWidget";
 import TripItinerary from "@/components/TripItinerary";
-import { hasValidTripAccess } from "@/lib/tripAccess";
-import TripsComingSoon from "@/components/TripsComingSoon";
 
 async function getTrip(slug: string) {
   const trip = await prisma.trips.findFirst({
@@ -20,10 +18,6 @@ async function getTrip(slug: string) {
 
 export default async function TripDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-
-  if (!(await hasValidTripAccess())) {
-    return <TripsComingSoon redirectTo={`/trips/${slug}`} />;
-  }
 
   let trip;
   try {

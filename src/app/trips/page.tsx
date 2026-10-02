@@ -1,8 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/db";
-import { hasValidTripAccess } from "@/lib/tripAccess";
-import TripsComingSoon from "@/components/TripsComingSoon";
 
 function formatCurrency(cents: number, currency: string) {
   return new Intl.NumberFormat("en-US", {
@@ -11,17 +9,7 @@ function formatCurrency(cents: number, currency: string) {
   }).format(cents / 100);
 }
 
-export default async function TripsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ error?: string }>;
-}) {
-  const { error } = await searchParams;
-
-  if (!(await hasValidTripAccess())) {
-    return <TripsComingSoon redirectTo="/trips" error={error} />;
-  }
-
+export default async function TripsPage() {
   let trips: Awaited<ReturnType<typeof getTrips>> = [];
 
   try {

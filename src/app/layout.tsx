@@ -51,12 +51,19 @@ export default async function RootLayout({
               <Link className="text-white/70 hover:text-white transition-colors hidden sm:inline" href="/about">
                 About
               </Link>
-              {user && (
+              {user ? (
                 <Link
                   className="text-white font-medium border border-white/25 rounded-full px-4 py-1.5 hover:bg-white/10 transition-colors"
                   href={user.role === "admin" ? "/admin/packages" : "/admin/my-trips"}
                 >
                   Admin
+                </Link>
+              ) : (
+                <Link
+                  className="text-white/70 hover:text-white transition-colors border border-white/15 rounded-full px-4 py-1.5 hover:border-white/25"
+                  href="/auth/signin"
+                >
+                  Sign In
                 </Link>
               )}
             </div>

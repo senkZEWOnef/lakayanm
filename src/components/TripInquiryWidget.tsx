@@ -31,10 +31,12 @@ export default function TripInquiryWidget({ trip }: TripInquiryWidgetProps) {
   const [preferredStartDate, setPreferredStartDate] = useState("");
   const [flexibleDates, setFlexibleDates] = useState(true);
   const [message, setMessage] = useState("");
+  const [accessCode, setAccessCode] = useState("");
   const [discountCode, setDiscountCode] = useState("");
   const [appliedDiscount, setAppliedDiscount] = useState<{ kind: string; value: number; label?: string } | null>(null);
   const [discountStatus, setDiscountStatus] = useState<"idle" | "checking" | "invalid">("idle");
   const [status, setStatus] = useState<"idle" | "submitting" | "redirecting" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const isGroupRate = travelerCount >= trip.group_threshold;
   const perPersonCents = isGroupRate ? trip.price_group_cents : trip.price_individual_cents;
@@ -76,9 +78,10 @@ export default function TripInquiryWidget({ trip }: TripInquiryWidgetProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email) return;
+    if (!name || !email || !accessCode.trim()) return;
 
     setStatus("submitting");
+    setErrorMessage("");
     try {
       const res = await fetch(`/api/trips/${trip.slug}/inquire`, {
         method: "POST",
@@ -91,15 +94,21 @@ export default function TripInquiryWidget({ trip }: TripInquiryWidgetProps) {
           preferredStartDate: preferredStartDate || undefined,
           flexibleDates,
           message,
+          accessCode,
           discountCode: appliedDiscount ? discountCode : undefined,
         }),
       });
 
-      if (!res.ok) throw new Error("Request failed");
       const data = await res.json();
+      if (!res.ok) {
+        setErrorMessage(data.error || "Request failed — please try again.");
+        setStatus("error");
+        return;
+      }
       setStatus("redirecting");
       window.location.href = `/pay/${data.id}`;
     } catch {
+      setErrorMessage("Something went wrong — please try again.");
       setStatus("error");
     }
   };
@@ -155,6 +164,21 @@ export default function TripInquiryWidget({ trip }: TripInquiryWidgetProps) {
               +
             </button>
           </div>
+        </div>
+
+        {/* Access code — required to book */}
+        <div>
+          <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Access code</label>
+          <input
+            required
+            value={accessCode}
+            onChange={(e) => setAccessCode(e.target.value.toUpperCase())}
+            placeholder="Got a code? Enter it here"
+            className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-mono focus:ring-2 focus:ring-haiti-turquoise focus:border-transparent"
+          />
+          <p className="text-xs sub mt-1">
+            We&apos;re testing this feature with a small group — reach out if you&apos;d like a code.
+          </p>
         </div>
 
         {/* Discount code */}
@@ -275,7 +299,7 @@ export default function TripInquiryWidget({ trip }: TripInquiryWidgetProps) {
         </button>
 
         {status === "error" && (
-          <p className="text-xs text-red-500 text-center">Something went wrong — please try again.</p>
+          <p className="text-xs text-red-500 text-center">{errorMessage || "Something went wrong — please try again."}</p>
         )}
 
         <p className="text-xs text-center sub">You won&apos;t be charged yet — we&apos;ll confirm availability first.</p>
