@@ -83,7 +83,7 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 text-center px-4 md:px-6 max-w-2xl mx-auto">
-            <p className="text-xs md:text-sm font-medium tracking-[0.3em] text-white/70 uppercase mb-4">Lakaya&apos;m</p>
+            <p className="text-xs md:text-sm font-bold tracking-[0.3em] text-white/70 uppercase mb-4">Lakaya&apos;m</p>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white leading-tight mb-6 drop-shadow-lg">
               See Haiti.
