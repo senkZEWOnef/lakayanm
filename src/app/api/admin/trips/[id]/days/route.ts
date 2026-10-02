@@ -5,16 +5,25 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
   try {
     const { id } = await params;
     const body = await request.json();
-    const { dayNumber, title, description, imageUrl } = body;
+    const { dayNumber, title, description, location, startTime, mealInfo, photos } = body;
 
     if (!dayNumber || !title || !description) {
       return NextResponse.json({ error: "dayNumber, title, and description are required" }, { status: 400 });
     }
 
+    const data = {
+      title,
+      description,
+      location: location || null,
+      start_time: startTime || null,
+      meal_info: mealInfo || null,
+      photos: Array.isArray(photos) ? photos : [],
+    };
+
     const day = await prisma.trip_days.upsert({
       where: { trip_id_day_number: { trip_id: id, day_number: parseInt(dayNumber, 10) } },
-      update: { title, description, image_url: imageUrl || null },
-      create: { trip_id: id, day_number: parseInt(dayNumber, 10), title, description, image_url: imageUrl || null },
+      update: data,
+      create: { trip_id: id, day_number: parseInt(dayNumber, 10), ...data },
     });
 
     return NextResponse.json({ ok: true, day });

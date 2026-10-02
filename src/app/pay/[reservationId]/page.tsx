@@ -84,6 +84,25 @@ export default async function PayPage({
               <p className="text-green-700 dark:text-green-400 font-medium">Payment received — thank you!</p>
             </div>
           )}
+
+          {reservation.confirmation_code && (
+            <div className="card text-center">
+              <p className="text-xs sub uppercase tracking-wide mb-1">Your trip code</p>
+              <p className="text-2xl font-bold tracking-wider text-haiti-navy dark:text-haiti-turquoise font-mono mb-2">
+                {reservation.confirmation_code}
+              </p>
+              <p className="text-sm sub mb-3">
+                Save this — it&apos;s all you need to see your full itinerary, check payment status, or send us a
+                message. No account needed.
+              </p>
+              <a
+                href={`/my-trip/${reservation.confirmation_code}`}
+                className="inline-flex items-center gap-2 bg-haiti-navy text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-haiti-navy/80 transition-colors"
+              >
+                View My Trip
+              </a>
+            </div>
+          )}
           {paid === "0" && (
             <div className="card border-red-500/30 bg-red-500/5 text-center">
               <p className="text-red-600 dark:text-red-400 font-medium">That payment didn&apos;t go through. Feel free to try again.</p>

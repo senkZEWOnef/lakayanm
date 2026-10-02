@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db";
 import { isAdmin } from "@/lib/auth";
 import ReservationActions from "@/components/ReservationActions";
 import PaymentHistoryList from "@/components/PaymentHistoryList";
+import AdminMessageThread from "@/components/AdminMessageThread";
 
 function formatCurrency(cents: number | null, currency = "usd") {
   if (cents == null) return "—";
@@ -16,7 +17,12 @@ export default async function ReservationDetailPage({ params }: { params: Promis
   const { id } = await params;
   const reservation = await prisma.reservations.findUnique({
     where: { id },
-    include: { trip: true, assigned_employee: true, payments: { orderBy: { created_at: "desc" } } },
+    include: {
+      trip: true,
+      assigned_employee: true,
+      payments: { orderBy: { created_at: "desc" } },
+      messages: { orderBy: { created_at: "asc" } },
+    },
   });
 
   if (!reservation) return <div className="sub">Reservation not found.</div>;
@@ -31,7 +37,15 @@ export default async function ReservationDetailPage({ params }: { params: Promis
 
       <div>
         <h1 className="text-3xl font-bold text-haiti-navy dark:text-haiti-turquoise">{reservation.trip.title}</h1>
-        <p className="sub mt-1">Requested {new Date(reservation.created_at).toLocaleString()}</p>
+        <p className="sub mt-1">
+          Requested {new Date(reservation.created_at).toLocaleString()}
+          {reservation.confirmation_code && (
+            <>
+              {" "}
+              · Trip code: <span className="font-mono">{reservation.confirmation_code}</span>
+            </>
+          )}
+        </p>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
@@ -79,6 +93,8 @@ export default async function ReservationDetailPage({ params }: { params: Promis
             <h3 className="font-bold text-haiti-navy dark:text-haiti-turquoise mb-3">Payment History</h3>
             <PaymentHistoryList payments={reservation.payments} />
           </div>
+
+          <AdminMessageThread reservationId={reservation.id} messages={reservation.messages} />
         </div>
 
         <div>

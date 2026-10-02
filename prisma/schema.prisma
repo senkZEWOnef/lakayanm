@@ -193,7 +193,10 @@ model trip_days {
   day_number  Int
   title       String
   description String
-  image_url   String?
+  location    String? // where this day happens — place/landmark name
+  start_time  String? // e.g. "9:00 AM"
+  meal_info   String? // e.g. "Lunch included at Lakay Restaurant, 1pm"
+  photos      Json? // string[] of Cloudinary URLs from your own scouting visits
   trip        trips   @relation(fields: [trip_id], references: [id])
 
   @@unique([trip_id, day_number])
@@ -227,10 +230,22 @@ model reservations {
   stripe_customer_id          String?
   stripe_checkout_session_id  String?
   assigned_employee_id        String?    @db.Uuid
+  confirmation_code           String?    @unique
   created_at                  DateTime   @default(now())
   trip                        trips      @relation(fields: [trip_id], references: [id])
   assigned_employee           employees? @relation(fields: [assigned_employee_id], references: [id])
   payments                    payments[]
+  messages                    reservation_messages[]
+}
+
+model reservation_messages {
+  id             String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  reservation_id String       @db.Uuid
+  from_role      String // "client" | "admin"
+  kind           String       @default("message") // "message" | "change_request"
+  body           String
+  created_at     DateTime     @default(now())
+  reservation    reservations @relation(fields: [reservation_id], references: [id])
 }
 
 model employees {

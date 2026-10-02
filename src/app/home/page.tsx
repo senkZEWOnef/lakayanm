@@ -4,58 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-// Featured cities for "Discover Haiti"
-const featuredCities = [
-  {
-    slug: "cap-haitien",
-    name: "Cap-Haïtien",
-    tagline: "The Royal Capital",
-    description: "Former colonial capital known as &apos;Paris of the Antilles.&apos; Home to the magnificent Citadelle Laferrière and rich revolutionary history.",
-    image: "/cap-haitien.jpg",
-    highlights: ["Citadelle Laferrière", "Sans-Souci Palace", "Colonial Architecture"],
-  },
-  {
-    slug: "port-au-prince",
-    name: "Port-au-Prince",
-    tagline: "Heart of the Nation",
-    description: "Haiti's vibrant capital where art, politics, and culture collide. The beating heart of Haitian creativity and innovation.",
-    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
-    highlights: ["Iron Market", "Musée du Panthéon", "Art Scene"],
-  },
-  {
-    slug: "jacmel",
-    name: "Jacmel",
-    tagline: "The Artistic Soul",
-    description: "Famous for its carnival papier-mâché arts, stunning French colonial architecture, and the mystical Bassin Bleu pools.",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-    highlights: ["Carnival Arts", "Bassin Bleu", "French Colonial"],
-  },
-  {
-    slug: "gonaives",
-    name: "Gonaïves",
-    tagline: "Birthplace of Freedom",
-    description: "Where Haitian independence was declared in 1804. This sacred city holds the keys to understanding Haiti's revolutionary spirit.",
-    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef",
-    highlights: ["Independence Square", "Freedom Museum", "Revolutionary History"],
-  },
-  {
-    slug: "les-cayes",
-    name: "Les Cayes",
-    tagline: "Southern Gateway",
-    description: "Southern port city and gateway to pristine Île-à-Vache. Experience authentic coastal life and traditional fishing culture.",
-    image: "https://images.unsplash.com/photo-1439066615861-d1af74d74000",
-    highlights: ["Île-à-Vache Ferry", "Gelée Beach", "Coastal Culture"],
-  },
-  {
-    slug: "jeremie",
-    name: "Jérémie",
-    tagline: "City of Poets",
-    description: "Where Haiti's literary giants were born. Explore 19th-century colonial homes and the rich intellectual heritage of Haiti.",
-    image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
-    highlights: ["Writers' Legacy", "Colonial Homes", "Literary Heritage"],
-  },
-];
-
 const DEFAULT_HERO_PHOTOS = ["/cap-haitien.jpg", "/limonade.jpg", "/market.jpg", "/lakay.jpg", "/milot.png"];
 
 export default function HomePage() {
@@ -159,7 +107,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Featured Cities Section - Modern Design */}
+        {/* Packages Section — merged with what used to be Featured Cities */}
         <section className="relative px-4 md:px-6 py-10 md:py-14">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-5">
@@ -168,264 +116,118 @@ export default function HomePage() {
               backgroundSize: '50px 50px'
             }}></div>
           </div>
-          
-          {/* Section Header */}
+
           <div className="relative max-w-7xl mx-auto">
             <div className="text-center mb-8 md:mb-10">
-              <div className="inline-flex items-center gap-3 px-5 py-2 bg-amber-500/20 backdrop-blur-sm border border-amber-400/30 rounded-full text-amber-300 text-sm font-medium mb-4">
-                <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
-                <span>Explore 6 Remarkable Cities</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/50 text-sm font-medium mb-4">
+                <span>🔒</span>
+                <span>Packages — Private Testing</span>
               </div>
 
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter text-center mb-3">
                 <span className="bg-gradient-to-r from-amber-200 via-amber-300 to-amber-500 bg-clip-text text-transparent">
-                  Featured
+                  Choose
                 </span>{" "}
-                <span className="text-white">Cities</span>
+                <span className="text-white">Your Experience</span>
               </h2>
 
               <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                Each city holds a piece of Haïti&apos;s soul. Choose your starting point for an unforgettable journey.
+                Not just a city — a full itinerary. History, the coast, a celebration, or something entirely your
+                own. We&apos;re personally scouting each one before opening it up — got a code?
               </p>
             </div>
 
-            {/* Cities Grid - Modern Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 md:gap-6">
-
-              {/* Large Featured City - Cap-Haïtien */}
-              <Link
-                href="/cities/cap-haitien"
-                className="lg:col-span-2 lg:row-span-2 group relative bg-slate-900/50 backdrop-blur-sm border border-amber-400/20 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-700 hover:transform hover:scale-[1.02]"
-              >
-                <div className="absolute inset-0">
-                  <Image
-                    src="/cap-haitien.jpg"
-                    alt="Cap-Haïtien"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-1000"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
-                </div>
-
-                <div className="relative z-10 p-6 lg:p-8 h-full flex flex-col justify-between min-h-[280px] lg:min-h-[340px]">
-                  {/* Badge */}
-                  <div className="flex items-start justify-between">
-                    <span className="px-4 py-2 bg-amber-500/90 backdrop-blur-sm text-amber-100 text-sm font-medium rounded-full">
-                      The Royal Capital
-                    </span>
-                    <span className="text-5xl lg:text-6xl opacity-20 font-black">01</span>
-                  </div>
-
-                  {/* Content */}
-                  <div>
-                    <h3 className="text-2xl lg:text-3xl font-black text-white mb-2 group-hover:text-amber-200 transition-colors duration-300">
-                      Cap-Haïtien
-                    </h3>
-                    <p className="text-slate-300 text-sm md:text-base mb-3 max-w-lg leading-relaxed line-clamp-2">
-                      Former colonial capital known as &apos;Paris of the Antilles.&apos; Home to the magnificent Citadelle Laferrière and rich revolutionary history.
-                    </p>
-                    
-                    {/* Highlights */}
-                    <div className="flex flex-wrap gap-3">
-                      {["Citadelle Laferrière", "Sans-Souci Palace", "Colonial Architecture"].map((highlight, idx) => (
-                        <span key={idx} className="px-3 py-1 bg-white/10 backdrop-blur-sm text-amber-300 text-sm rounded-full border border-amber-400/30">
-                          {highlight}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Hover arrow */}
-                <div className="absolute bottom-8 right-8 w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
-              </Link>
-
-              {/* Medium Cities - Right Column */}
-              <div className="space-y-4">
-                {/* Jacmel */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+              {[
+                {
+                  badge: "3 Days",
+                  title: "North Discovery",
+                  tagline: "Labadee's coast, the Citadelle Laferrière, and Cap-Haïtien — the classic introduction to the North.",
+                  image: "/milot.png",
+                },
+                {
+                  badge: "Regional",
+                  title: "The South Side",
+                  tagline: "Jacmel's art, hidden waterfalls, and the slower rhythm of southern Haiti.",
+                  image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+                },
+                {
+                  badge: "Heritage",
+                  title: "Historic Monuments",
+                  tagline: "Independence sites and revolutionary landmarks — the places where Haiti's story was written.",
+                  image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef",
+                },
+                {
+                  badge: "Weddings",
+                  title: "Say I Do in Haiti",
+                  tagline: "Beachfront ceremonies and colonial courtyards — married somewhere unforgettable.",
+                  image: "https://images.unsplash.com/photo-1439066615861-d1af74d74000",
+                },
+                {
+                  badge: "Celebrations",
+                  title: "Birthday in Haiti",
+                  tagline: "Milestone birthdays planned around real Haitian food, music, and company.",
+                  image: "/food.jpg",
+                },
+                {
+                  badge: "Culture",
+                  title: "Fèt Champèt",
+                  tagline: "A day in one specific countryside town — the celebration, the food, the community.",
+                  image: "/local.jpg",
+                },
+              ].map((pkg) => (
                 <Link
-                  href="/cities/jacmel"
+                  key={pkg.title}
+                  href="/trips"
                   className="group relative bg-slate-900/50 backdrop-blur-sm border border-amber-400/20 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-700 hover:transform hover:scale-[1.02] block"
                 >
                   <div className="absolute inset-0">
                     <Image
-                      src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
-                      alt="Jacmel"
+                      src={pkg.image}
+                      alt={pkg.title}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-1000"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
                   </div>
 
-                  <div className="relative z-10 p-5 h-full flex flex-col justify-between min-h-[160px]">
-                    <div className="flex items-start justify-between">
-                      <span className="px-3 py-1 bg-amber-500/90 backdrop-blur-sm text-amber-100 text-xs font-medium rounded-full">
-                        Artistic Soul
-                      </span>
-                      <span className="text-2xl opacity-20 font-black">02</span>
-                    </div>
+                  <div className="relative z-10 p-5 h-full flex flex-col justify-between min-h-[220px]">
+                    <span className="self-start px-3 py-1 bg-amber-500/90 backdrop-blur-sm text-amber-100 text-xs font-medium rounded-full">
+                      {pkg.badge}
+                    </span>
 
                     <div>
                       <h3 className="text-xl font-black text-white mb-1 group-hover:text-amber-200 transition-colors duration-300">
-                        Jacmel
+                        {pkg.title}
                       </h3>
-                      <p className="text-slate-300 text-sm leading-relaxed line-clamp-1">
-                        Famous for carnival papier-mâché arts and mystical Bassin Bleu pools.
-                      </p>
+                      <p className="text-slate-300 text-sm leading-relaxed">{pkg.tagline}</p>
                     </div>
                   </div>
                 </Link>
+              ))}
 
-                {/* Port-au-Prince */}
-                <Link
-                  href="/cities/port-au-prince"
-                  className="group relative bg-slate-900/50 backdrop-blur-sm border border-amber-400/20 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-700 hover:transform hover:scale-[1.02] block"
-                >
-                  <div className="absolute inset-0">
-                    <Image
-                      src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b"
-                      alt="Port-au-Prince"
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-1000"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                  </div>
-
-                  <div className="relative z-10 p-5 h-full flex flex-col justify-between min-h-[160px]">
-                    <div className="flex items-start justify-between">
-                      <span className="px-3 py-1 bg-amber-500/90 backdrop-blur-sm text-amber-100 text-xs font-medium rounded-full">
-                        Heart of Nation
-                      </span>
-                      <span className="text-2xl opacity-20 font-black">03</span>
-                    </div>
-
-                    <div>
-                      <h3 className="text-xl font-black text-white mb-1 group-hover:text-amber-200 transition-colors duration-300">
-                        Port-au-Prince
-                      </h3>
-                      <p className="text-slate-300 text-sm leading-relaxed line-clamp-1">
-                        Vibrant capital where art, politics, and culture collide.
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-
-              {/* Bottom Row - 3 Small Cities */}
+              {/* Build Your Own — distinct treatment, not a photo card */}
               <Link
-                href="/cities/gonaives"
-                className="group relative bg-slate-900/50 backdrop-blur-sm border border-amber-400/20 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-700 hover:transform hover:scale-[1.02]"
+                href="/trips"
+                className="group relative border-2 border-dashed border-amber-400/30 rounded-3xl overflow-hidden hover:border-amber-400/60 transition-all duration-700 hover:transform hover:scale-[1.02] block p-5 min-h-[220px] flex flex-col justify-between"
               >
-                <div className="absolute inset-0">
-                  <Image
-                    src="https://images.unsplash.com/photo-1500382017468-9049fed747ef"
-                    alt="Gonaïves"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-1000"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                </div>
-                
-                <div className="relative z-10 p-4 h-full flex flex-col justify-between min-h-[130px]">
-                  <div className="flex items-start justify-between">
-                    <span className="px-3 py-1 bg-amber-500/90 backdrop-blur-sm text-amber-100 text-xs font-medium rounded-full">
-                      Birthplace of Freedom
-                    </span>
-                    <span className="text-2xl opacity-20 font-black">04</span>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-xl font-black text-white mb-1 group-hover:text-amber-200 transition-colors duration-300">
-                      Gonaïves
-                    </h3>
-                    <p className="text-slate-300 text-sm">
-                      Where independence was declared in 1804.
-                    </p>
-                  </div>
-                </div>
-              </Link>
-
-              <Link
-                href="/cities/les-cayes"
-                className="group relative bg-slate-900/50 backdrop-blur-sm border border-amber-400/20 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-700 hover:transform hover:scale-[1.02]"
-              >
-                <div className="absolute inset-0">
-                  <Image
-                    src="https://images.unsplash.com/photo-1439066615861-d1af74d74000"
-                    alt="Les Cayes"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-1000"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                </div>
-                
-                <div className="relative z-10 p-4 h-full flex flex-col justify-between min-h-[130px]">
-                  <div className="flex items-start justify-between">
-                    <span className="px-3 py-1 bg-amber-500/90 backdrop-blur-sm text-amber-100 text-xs font-medium rounded-full">
-                      Southern Gateway
-                    </span>
-                    <span className="text-2xl opacity-20 font-black">05</span>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-xl font-black text-white mb-1 group-hover:text-amber-200 transition-colors duration-300">
-                      Les Cayes
-                    </h3>
-                    <p className="text-slate-300 text-sm">
-                      Gateway to pristine Île-à-Vache.
-                    </p>
-                  </div>
-                </div>
-              </Link>
-
-              <Link
-                href="/cities/jeremie"
-                className="group relative bg-slate-900/50 backdrop-blur-sm border border-amber-400/20 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-700 hover:transform hover:scale-[1.02]"
-              >
-                <div className="absolute inset-0">
-                  <Image
-                    src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e"
-                    alt="Jérémie"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-1000"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                </div>
-                
-                <div className="relative z-10 p-4 h-full flex flex-col justify-between min-h-[130px]">
-                  <div className="flex items-start justify-between">
-                    <span className="px-3 py-1 bg-amber-500/90 backdrop-blur-sm text-amber-100 text-xs font-medium rounded-full">
-                      City of Poets
-                    </span>
-                    <span className="text-2xl opacity-20 font-black">06</span>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-xl font-black text-white mb-1 group-hover:text-amber-200 transition-colors duration-300">
-                      Jérémie
-                    </h3>
-                    <p className="text-slate-300 text-sm">
-                      Where literary giants were born.
-                    </p>
-                  </div>
+                <span className="self-start px-3 py-1 bg-white/5 border border-white/10 text-white/60 text-xs font-medium rounded-full">
+                  Custom
+                </span>
+                <div>
+                  <h3 className="text-xl font-black text-white mb-1 group-hover:text-amber-200 transition-colors duration-300">
+                    Build Your Own
+                  </h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    Something specific in mind? For an additional planning fee, we&apos;ll build a package around it.
+                  </p>
                 </div>
               </Link>
             </div>
-            
-            {/* Bottom CTA */}
+
             <div className="text-center mt-8">
-              <p className="text-slate-400 mb-4 text-sm md:text-base">
-                Can&apos;t decide where to start? We recommend beginning with the royal capital.
-              </p>
-              <Link
-                href="/cities/cap-haitien"
-                className="btn-sunset hover:scale-105"
-              >
-                <span>Start with Cap-Haïtien</span>
+              <Link href="/trips" className="btn-sunset hover:scale-105">
+                <span>See All Packages</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -478,34 +280,6 @@ export default function HomePage() {
                 </svg>
               </Link>
             </div>
-          </div>
-        </section>
-
-        {/* Packages — Private Testing (muted, coming soon) */}
-        <section className="relative px-4 md:px-6 py-6 md:py-8">
-          <div className="relative max-w-5xl mx-auto text-center bg-slate-900/40 border border-white/10 rounded-3xl p-6 md:p-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/50 text-sm font-medium mb-4">
-              <span>🔒</span>
-              <span>Packages — Private Testing</span>
-            </div>
-
-            <h2 className="text-xl md:text-2xl font-bold text-white/80 mb-2">
-              We&apos;re scouting, filming, and training guides before we open this up.
-            </h2>
-            <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto mb-5">
-              A small tryout batch gets early access with a special rate in exchange for footage and feedback. Have a
-              code?
-            </p>
-
-            <Link
-              href="/trips"
-              className="inline-flex items-center gap-3 px-6 py-3 border border-white/20 text-white/70 rounded-full hover:border-white/40 hover:text-white transition-all duration-300"
-            >
-              <span>Enter Access Code</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
           </div>
         </section>
 

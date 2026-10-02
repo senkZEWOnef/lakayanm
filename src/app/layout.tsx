@@ -76,6 +76,7 @@ export default async function RootLayout({
               <Link href="/discover" className="hover:text-white transition-colors">Discover</Link>
               <Link href="/gallery" className="hover:text-white transition-colors">Gallery</Link>
               <Link href="/trips" className="hover:text-white transition-colors">Trips</Link>
+              <Link href="/my-trip" className="hover:text-white transition-colors">My Trip</Link>
               <Link href="/about" className="hover:text-white transition-colors">About</Link>
             </nav>
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/db";
 import TripInquiryWidget from "@/components/TripInquiryWidget";
+import TripItinerary from "@/components/TripItinerary";
 import { hasValidTripAccess } from "@/lib/tripAccess";
 import TripsComingSoon from "@/components/TripsComingSoon";
 
@@ -83,27 +84,7 @@ export default async function TripDetailPage({ params }: { params: Promise<{ slu
             )}
 
             {/* Itinerary */}
-            {trip.days.length > 0 && (
-              <section>
-                <div className="flex items-center gap-3 mb-6">
-                  <h2 className="text-2xl font-bold text-white">Day by Day</h2>
-                  <div className="h-px bg-gradient-to-r from-amber-400 to-transparent flex-1"></div>
-                </div>
-                <div className="space-y-4">
-                  {trip.days.map((day) => (
-                    <div key={day.id} className="card flex gap-4">
-                      <div className="w-12 h-12 shrink-0 bg-haiti-amber/10 text-haiti-amber rounded-full flex items-center justify-center font-bold">
-                        {day.day_number}
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-haiti-navy dark:text-haiti-turquoise mb-1">{day.title}</h3>
-                        <p className="text-sm sub leading-relaxed">{day.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
+            <TripItinerary days={trip.days} />
 
             {/* Includes / Excludes */}
             <div className="grid md:grid-cols-2 gap-6">

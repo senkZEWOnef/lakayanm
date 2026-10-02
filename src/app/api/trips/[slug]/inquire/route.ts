@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { generateConfirmationCode } from "@/lib/confirmationCode";
 
 export async function POST(
   request: NextRequest,
@@ -39,6 +40,8 @@ export async function POST(
       }
     }
 
+    const confirmationCode = await generateConfirmationCode();
+
     const reservation = await prisma.reservations.create({
       data: {
         trip_id: trip.id,
@@ -52,10 +55,11 @@ export async function POST(
         quoted_total_cents: totalCents,
         discount_code: appliedCode,
         deposit_due_cents: trip.deposit_cents * count,
+        confirmation_code: confirmationCode,
       },
     });
 
-    return NextResponse.json({ ok: true, id: reservation.id, quotedTotalCents: totalCents });
+    return NextResponse.json({ ok: true, id: reservation.id, quotedTotalCents: totalCents, confirmationCode });
   } catch (error) {
     console.error("Reservation error:", error);
     return NextResponse.json({ error: "Failed to submit request" }, { status: 500 });
