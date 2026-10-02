@@ -4,6 +4,7 @@ import { getSessionUser } from "@/lib/auth";
 
 const ADMIN_LINKS = [
   { href: "/admin/packages", label: "📦 Packages" },
+  { href: "/admin/places", label: "🏨 Discover Businesses" },
   { href: "/admin/reservations", label: "📋 Reservations" },
   { href: "/admin/discount-codes", label: "🏷️ Discount Codes" },
   { href: "/admin/payments", label: "💳 Payments" },
